@@ -1,0 +1,29 @@
+{
+  "name": "demo1",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "bootstet@163.com <bootstet@163.com>",
+  "homepage": "https://github.com/bootstet/encode#readme",
+  "license": "ISC",
+  "main": "index.json",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmmirror.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bootstet/encode.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/demo1.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/bootstet/encode/issues"
+  }
+}
