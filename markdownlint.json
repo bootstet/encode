@@ -1,0 +1,3 @@
+{
+  "extends": "./packages/bootstet-markdownlint-config/index.json"
+}
