@@ -1,5 +1,5 @@
 {
-  "name": "encode-fe-commitlint-config",
+  "name": "commitlint-config",
   "version": "0.0.3",
   "main": "index.js",
   "description": "Git规范",
@@ -8,15 +8,15 @@
     "commit",
     "lint"
   ],
-  "author": "chenghuai",
-  "homepage": "https://github.com/encode-studio-fe/fe-spec#readme",
+  "author": "bootstet",
+  "homepage": "https://github.com/bootstet/encode#readme",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/encode-studio-fe/fe-spec.git"
+    "url": "git+git+https://github.com/bootstet/encode.git"
   },
   "bugs": {
-    "url": "https://github.com/encode-studio-fe/fe-spec/issues"
+    "url": "https://github.com/bootstet/encode/issues"
   },
   "dependencies": {
     "conventional-changelog-conventionalcommits": "^4.5.0"
