@@ -1,5 +1,5 @@
 {
-  "name": "markdownlint-config",
+  "name": "bootstet-markdownlint-config",
   "version": "0.0.4",
   "description": "文档规范",
   "author": "bootstet@163.com <bootstet@163.com>",
@@ -29,5 +29,5 @@
   "peerDependencies": {
     "markdownlint": "^0.28.1"
   },
-  "gitHead": "16ed96529dbe720511c349917f30fa258efefc83"
+  "gitHead": "c82405e29c81b1752299ac19a99fb3c0a6fd1a69"
 }
