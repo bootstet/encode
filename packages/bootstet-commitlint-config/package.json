@@ -1,0 +1,25 @@
+{
+  "name": "bootstet-commitlint-config",
+  "version": "0.0.3",
+  "main": "index.js",
+  "description": "Git规范",
+  "keywords": [
+    "encode",
+    "commit",
+    "lint"
+  ],
+  "author": "bootstet",
+  "homepage": "https://github.com/bootstet/encode#readme",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+git+https://github.com/bootstet/encode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bootstet/encode/issues"
+  },
+  "dependencies": {
+    "conventional-changelog-conventionalcommits": "^4.5.0"
+  },
+  "gitHead": "16ed96529dbe720511c349917f30fa258efefc83"
+}
