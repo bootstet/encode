@@ -1,2 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname "$0")/h"
+echo "Commit message: $1"
+pnpm test
+exit 1
