@@ -1,4 +1,5 @@
 import { defineConfig4CustomTheme, UserPlugins } from 'vuepress/config';
+const routerPath = require('./router.js')
 
 export default defineConfig4CustomTheme({
 	locales: {
@@ -31,50 +32,7 @@ export default defineConfig4CustomTheme({
 				],
 			},
 		],
-		sidebar: [
-			{
-				title: '编码规范',
-				children: [
-					{
-						title: 'HTML 编码规范',
-						path: '/coding/html.md',
-					},
-					{
-						title: 'CSS 编码规范',
-						path: '/coding/css.md',
-					},
-					{
-						title: 'JavaScript 编码规范',
-						path: '/coding/javascript.md',
-					},
-					{
-						title: 'Node 编码规范',
-						path: '/coding/node.md',
-					},
-					{
-						title: 'Typescript 编码规范',
-						path: '/coding/typescript.md',
-					},
-				],
-			},
-			{
-				title: '工程规范',
-				children: [
-					{
-						title: 'Git 规范',
-						path: '/engineering/git.md',
-					},
-					{
-						title: '文档规范',
-						path: '/engineering/doc.md',
-					},
-					{
-						title: 'CHANGELOG 规范',
-						path: '/engineering/changelog.md',
-					},
-				],
-			},
-		],
+		sidebar: routerPath,
 		logo: '/img/logo.jpeg',
 		repo: 'encode-studio-fe/fe-spec',
 		searchMaxSuggestions: 10,
