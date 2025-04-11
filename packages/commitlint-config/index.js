@@ -15,4 +15,4 @@ module.exports = {
     'type-enum': [2, 'always', ['feat', 'fix', 'docs', 'style', 'test', 'refactor', 'chore', 'revert']],
   },
 };
-// https://github.com/conventional-changelog/commitlint/blob/master/%40commitlint/config-conventional/index.js 
+// https://github.com/conventional-changelog/commitlint/blob/master/%40commitlint/config-conventional/index.js  
