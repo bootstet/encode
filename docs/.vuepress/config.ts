@@ -31,6 +31,21 @@ export default defineConfig4CustomTheme({
 					{ text: 'CHANGELOG 规范', link: '/engineering/changelog.md' },
 				],
 			},
+			{
+				text: 'study',
+				items:[
+					{ text: 'JavaScript深度剖析', link: '/components/page/funPro.md' },
+					{ text: 'typeScript', link: '/components/ts/typescript.md' },
+					{ text: '设计模式', link: '/components/question/design.md' },
+					{ text: '前端工程化', link: '/components/engineering/' },
+					{ text: 'vue', link: '/components/vue/vueBase' },
+					{ text: 'react', link: '/components/react/basics1.md' },
+					{ text: 'node', link: '/components/node/basic.md' },
+					{ text: '面试题', link: '/components/question/proAndAsync.md' },
+					{ text: '面试题整理', link: '/components/browser/browser.md' },
+					{ text: '常见问题记录', link: '/components/article/bokeinit.md' },
+				]
+			}
 		],
 		sidebar: routerPath,
 		logo: '/img/logo.jpeg',
@@ -38,7 +53,7 @@ export default defineConfig4CustomTheme({
 		searchMaxSuggestions: 10,
 		docsDir: 'docs',
 		footer: {
-			createYear: 2023,
+			createYear: 2024,
 			copyrightInfo:
 				'encode studio | <a href="https://github.com/encode-studio-fe/fe-spec" target="_blank">github</a>',
 		},
