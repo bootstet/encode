@@ -65,12 +65,12 @@ const studySidebar = [
     collapsable: true, 
     sidebarDepth: 3,
     children: [
-      ['./components/vue/vueBase', 'vue基础'],
-      ['./components/vue/virtualDom', '虚拟dom'],
+      ['/components/vue/vueBase', 'vue基础'],
+      ['/components/vue/virtualDom', '虚拟dom'],
       // ['./components/vue/notes/Vue基础回顾.pdf', '老师笔记'],
-      ['./components/vue/vuex.md', 'vuex'],
-      ['./components/vue/nuxt基础.md', 'nuxt基础'],
-      ['./components/vue/nuxt综合案例.md', 'nuxt综合案例'],
+      ['/components/vue/vuex.md', 'vuex'],
+      ['/components/vue/nuxt基础.md', 'nuxt基础'],
+      ['/components/vue/nuxt综合案例.md', 'nuxt综合案例'],
     ]
   },
   {
@@ -78,12 +78,12 @@ const studySidebar = [
     collapsable: true,
     idebarDepth: 5,
     children: [
-      ['./components/react/basics1.md', 'react基础回顾'],
-      ['./components/react/virtualDOM.md', 'Virtual DOM 及 Diff算法'],
-      ['./components/react/fiber1.md', 'fiber'],
-      ['./components/react/React-code.md', 'react 源码解析'],
-      ['./components/react/redux.md', 'redux'],
-      ['./components/react/hooks.md', 'hooks'],
+      ['/components/react/basics1.md', 'react基础回顾'],
+      ['/components/react/virtualDOM.md', 'Virtual DOM 及 Diff算法'],
+      ['/components/react/fiber1.md', 'fiber'],
+      ['/components/react/React-code.md', 'react 源码解析'],
+      ['/components/react/redux.md', 'redux'],
+      ['/components/react/hooks.md', 'hooks'],
     ]
   },
   {
@@ -91,9 +91,9 @@ const studySidebar = [
     collapsable: true,
     idebarDepth: 5,
     children: [
-      ['./components/node/basic.md', 'node核心'],
-      ['./components/node/communication.md', '网络通信'],
-      ['./components/node/module.md', 'node模块化（未完）'],
+      ['/components/node/basic.md', 'node核心'],
+      ['/components/node/communication.md', '网络通信'],
+      ['/components/node/module.md', 'node模块化（未完）'],
     ]
   },
   {
