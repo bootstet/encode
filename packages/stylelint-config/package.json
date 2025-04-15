@@ -1,0 +1,28 @@
+{
+  "name": "stylelint-config",
+  "version": "0.0.5",
+  "description": "CSS规范",
+  "author": "bootstet <bootstet@163.com>",
+  "homepage": "https://github.com/bootstet/encode#readme",
+  "license": "ISC",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bootstet/encode.git"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "peerDependencies": {
+    "stylelint": ">=8.3.0",
+    "stylelint-scss": ">=2.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "stylelint": "^14.3.0",
+    "stylelint-scss": "^4.1.0"
+  },
+  "bugs": {
+    "url": "https://github.com/bootstet/encode/issues"
+  }
+}
