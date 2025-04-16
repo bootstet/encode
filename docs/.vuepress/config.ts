@@ -49,25 +49,25 @@ export default defineConfig4CustomTheme({
 		],
 		sidebar: routerPath,
 		logo: '/img/logo.jpeg',
-		repo: 'encode-studio-fe/fe-spec',
+		repo: 'bootstet/encode',
 		searchMaxSuggestions: 10,
 		docsDir: 'docs',
 		footer: {
 			createYear: 2024,
 			copyrightInfo:
-				'encode studio | <a href="https://github.com/encode-studio-fe/fe-spec" target="_blank">github</a>',
+				'encode studio | <a href="https://github.com/bootstet/encode" target="_blank">github</a>',
 		},
 
 		extendFrontmatter: {
 			author: {
-				name: '澄怀',
-				link: 'https://github.com/encode-studio-fe/fe-sepc',
+				name: 'bootstet',
+				link: 'https://github.com/bootstet/encode',
 			},
 		},
 	},
 
 	head: [
-		['link', { rel: 'icon', href: '/img/logo.png' }],
+		['link', { rel: 'icon', href: '/img/logo.jpeg' }],
 		[
 			'meta',
 			{
