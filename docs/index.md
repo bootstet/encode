@@ -53,7 +53,7 @@ features:
 
 ## :email: 联系
 
--   **印客学院官网**: <http://encodestudio.cn>
--   **GitHub**: <https://github.com/encode-studio-fe/fe-spec>
+-   **前端编码规范工程化** <https://bootstet.github.io/encode/>
+-   **GitHub**: <https://github.com/bootstet/encode>
 
 </br>
