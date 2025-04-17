@@ -31,6 +31,20 @@ export default defineConfig4CustomTheme({
 					{ text: 'CHANGELOG 规范', link: '/engineering/changelog.md' },
 				],
 			},
+      {
+        text: 'NPM包',
+        items: [
+          { text: 'eslint-config-encode', link: '/npm/eslint.md' },
+          { text: 'stylelint-config-encode', link: '/npm/stylelint.md' },
+          { text: 'commitlint-config-encode', link: '/npm/commitlint.md' },
+          { text: 'markdownlint-config-encode', link: '/npm/markdownlint.md' },
+          { text: 'eslint-plugin-encode', link: '/npm/eslint-plugin.md' },
+        ],
+      },
+			{
+        text: '脚手架',
+        items: [{ text: 'encode-fe-lint', link: '/cli/encode-fe-lint.md' }],
+      },
 			{
 				text: 'study',
 				items:[

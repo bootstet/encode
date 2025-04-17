@@ -1,0 +1,38 @@
+{
+  "name": "bootstet-eslint-plugin",
+  "version": "1.0.8",
+  "description": "自定义eslint插件",
+  "scripts": {
+    "test": "jest",
+    "prepublishOnly": "npm run test"
+  },
+  "files": [
+    "configs/",
+    "rules/",
+    "README.md"
+  ],
+  "keywords": [
+    "encode",
+    "eslint",
+    "eslint-plugin"
+  ],
+  "main": "src/index.js",
+  "author": "bootstet",
+  "homepage": "https://github.com/bootstet/encode#readme",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bootstet/encode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bootstet/encodec/issues"
+  },
+  "dependencies": {
+    "fs-extra": "^9.0.1",
+    "require-all": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.7.0",
+    "jest": "^26.6.3"
+  }
+}
