@@ -43,7 +43,7 @@ export default defineConfig4CustomTheme({
       },
 			{
         text: '脚手架',
-        items: [{ text: 'encode-fe-lint', link: '/cli/encode-fe-lint.md' }],
+        items: [{ text: 'bootstet-fe-lint', link: '/cli/encode-fe-lint.md' }],
       },
 			{
 				text: 'study',

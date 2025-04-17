@@ -1,7 +1,7 @@
 const cliSidebar = [
   {
     title: '脚手架',
-    children: [{ title: 'encode-fe-lint', path: '/cli/encode-fe-lint.md' }],
+    children: [{ title: 'bootstet-fe-lint', path: '/cli/encode-fe-lint.md' }],
   },
 ]
 
