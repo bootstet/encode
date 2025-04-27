@@ -15,6 +15,9 @@ importers:
       '@commitlint/cli':
         specifier: ^17.6.1
         version: 17.8.1
+      bootstet-fe-lint:
+        specifier: workspace:*
+        version: link:packages/bootstet-fe-lint
       husky:
         specifier: ^8.0.3
         version: 8.0.3
