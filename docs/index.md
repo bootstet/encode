@@ -55,5 +55,6 @@ features:
 
 -   **前端编码规范工程化** <https://bootstet.github.io/encode/>
 -   **GitHub**: <https://github.com/bootstet/encode>
+-   **type-challenges**: <https://github.com/type-challenges/type-challenges>
 
 </br>
