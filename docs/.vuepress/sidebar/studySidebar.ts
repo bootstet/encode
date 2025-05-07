@@ -38,6 +38,7 @@ const studySidebar = [
       ['/components/ts/typescript.md', 'typeScript基础'],
       ['/components/ts/', 'typeScript进阶'],
       ['/components/ts/easy/实现pick', '实现Pick'],
+      ['/components/ts/easy/实现readonly', '实现readonly'],
      
     ]
   },
