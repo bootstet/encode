@@ -31,7 +31,7 @@ npm install encode-fe-lint -g
 
 ### 使用
 
-#### `encode-fe-lint init`：一键接入
+#### `bootstet-fe-lint init`：一键接入
 
 在项目根目录执行 `encode-fe-lint init`，即可一键接入规范，为项目安装规范 `Lint` 所需的依赖和配置。
 
