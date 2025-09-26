@@ -183,7 +183,17 @@ const studySidebar = [
     title: '面试题整理',   
     sidebarDepth: 3,    
     children: [
+      ['/components/question/html.md', 'html'],
+      ['/components/question/css.md', 'css'],
+      ['/components/question/javascript.md', 'javascript'],
+      ['/components/question/vue.md', 'vue'],
+      ['/components/question/react.md', 'react'],
+      ['/components/question/network.md', '计算机网络'],
       ['/components/browser/browser.md', '浏览器原理'],
+      ['/components/question/xingnengyouhua.md', '性能优化'],
+      ['/components/question/gongchenghua.md', '前端工程化'],
+      ['/components/question/shouxiedaima.md', '手写代码'],
+      ['/components/question/daimashuchu.md', '代码输出'],
     ]
   },
   {
