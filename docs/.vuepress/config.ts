@@ -1,5 +1,5 @@
 import { defineConfig4CustomTheme, UserPlugins } from 'vuepress/config';
-const routerPath = require('./router.js')
+const routerPath = require('./router.ts')
 
 export default defineConfig4CustomTheme({
 	locales: {
