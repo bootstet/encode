@@ -194,22 +194,6 @@ const studySidebar = [
     ]
   },
   {
-    title: '性能优化',
-    collapsable: true,
-    sidebarDepth: 3,
-    children: [
-      ['/components/perf/web-vitals.md', 'Web Vitals 与优化']
-    ]
-  },
-  {
-    title: '稳定性与可观测',
-    collapsable: true,
-    sidebarDepth: 2,
-    children: [
-      ['/components/observability/sentry.md', '错误监控与 SourceMap']
-    ]
-  },
-  {
     title: '安全',
     collapsable: true,
     sidebarDepth: 2,
