@@ -120,6 +120,7 @@ const studySidebar = [
     sidebarDepth: 3,    // 可选的, 默认值是 1
     children: [
       ['/components/engineering/', '前端工程化'],
+      ['/components/engineering/monorepo.md', 'Monorepo 指南'],
       ['/components/engineering/scaffold.md', '脚手架工具'],
       ['/components/engineering/yeoman.md', 'yeoman使用'],
       ['/components/engineering/gulp.md', 'gulp'],
@@ -134,10 +135,23 @@ const studySidebar = [
     children: [
       ['/components/vue/vueBase', 'vue基础'],
       ['/components/vue/virtualDom', '虚拟dom'],
-      // ['./components/vue/notes/Vue基础回顾.pdf', '老师笔记'],
       ['/components/vue/vuex.md', 'vuex'],
+      ['/components/vue/pinia.md', 'pinia'],
       ['/components/vue/nuxt基础.md', 'nuxt基础'],
       ['/components/vue/nuxt综合案例.md', 'nuxt综合案例'],
+      ['/components/vue/nuxt3-ssr.md', 'nuxt3与SSR'],
+    ]
+  },
+  {
+    title: 'vue3',
+    collapsable: true,
+    sidebarDepth: 3,
+    children: [
+      ['/components/vue3/reactivity.md', '响应式原理'],
+      ['/components/vue3/composition-api.md', 'Composition API'],
+      ['/components/vue3/suspense-async.md', 'Suspense 与异步组件'],
+      ['/components/vue3/runtime-compiler.md', '运行时/编译器与Diff'],
+      ['/components/vue3/vue2-to-vue3.md', '从Vue2迁移到Vue3']
     ]
   },
   {
@@ -177,6 +191,49 @@ const studySidebar = [
       ['/components/question/vueVirtualdom.md', 'vue虚拟dom'],
       ['/components/question/node.md', 'nodejs高级编程'],
       ['/components/browser/reviewQuestion.md', '2021面试题'],
+    ]
+  },
+  {
+    title: '性能优化',
+    collapsable: true,
+    sidebarDepth: 3,
+    children: [
+      ['/components/perf/web-vitals.md', 'Web Vitals 与优化']
+    ]
+  },
+  {
+    title: '稳定性与可观测',
+    collapsable: true,
+    sidebarDepth: 2,
+    children: [
+      ['/components/observability/sentry.md', '错误监控与 SourceMap']
+    ]
+  },
+  {
+    title: '安全',
+    collapsable: true,
+    sidebarDepth: 2,
+    children: [
+      ['/components/security/xss-csp.md', 'XSS 与 CSP'],
+      ['/components/security/csrf-auth.md', 'CSRF 与鉴权']
+    ]
+  },
+  {
+    title: '网络与缓存',
+    collapsable: true,
+    sidebarDepth: 2,
+    children: [
+      ['/components/network/http-cache.md', 'HTTP 缓存策略'],
+      ['/components/network/upload-large-file.md', '大文件上传/断点续传']
+    ]
+  },
+  {
+    title: '小程序',
+    collapsable: true,
+    sidebarDepth: 2,
+    children: [
+      ['/components/miniapp/compile-pipeline.md', '编译管线与分包'],
+      ['/components/miniapp/perf.md', '性能优化实践']
     ]
   },
   {

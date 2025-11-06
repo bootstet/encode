@@ -29,6 +29,7 @@ export default defineConfig4CustomTheme({
 					{ text: 'Git 规范', link: '/engineering/git.md' },
 					{ text: '文档规范', link: '/engineering/doc.md' },
 					{ text: 'CHANGELOG 规范', link: '/engineering/changelog.md' },
+					{ text: 'Monorepo', link: '/components/engineering/monorepo.md' },
 				],
 			},
       {
@@ -45,6 +46,14 @@ export default defineConfig4CustomTheme({
         text: '脚手架',
         items: [{ text: 'bootstet-fe-lint', link: '/cli/encode-fe-lint.md' }],
       },
+      { text: '性能', link: '/components/perf/web-vitals.md' },
+      { text: '稳定性', link: '/components/observability/sentry.md' },
+      { text: '安全', link: '/components/security/xss-csp.md' },
+      { text: '安全', items: [
+					{ text:'XSS 与 CSP', link: '/components/security/xss-csp.md' },
+					{ text:'CSRF 与鉴权', link: '/components/security/csrf-auth.md' }
+				] 
+			},
 			{
 				text: 'study',
 				items:[
