@@ -48,12 +48,12 @@ export default defineConfig4CustomTheme({
       },
       { text: '性能', link: '/components/perf/web-vitals.md' },
       { text: '稳定性', link: '/components/observability/sentry.md' },
-      { text: '安全', link: '/components/security/xss-csp.md' },
       { text: '安全', items: [
 					{ text:'XSS 与 CSP', link: '/components/security/xss-csp.md' },
 					{ text:'CSRF 与鉴权', link: '/components/security/csrf-auth.md' }
 				] 
 			},
+      { text: '面试OS', link: '/interview/index.md' },
 			{
 				text: 'study',
 				items:[
