@@ -6,6 +6,7 @@ const sidebar = [
       { title: '一页纸：Vue3', path: '/interview/one-pagers/vue3' },
       { title: '战役卡：小程序提速', path: '/interview/battle-cards/perf-miniprogram' },
       { title: '高频50题', path: '/interview/cards/50-questions' },
+      { title: '阅读：从输入 URL 到页面加载', path: '/interview/reading/url-to-page' },
     ],
   },
 ]
