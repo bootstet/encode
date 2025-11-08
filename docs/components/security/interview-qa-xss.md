@@ -4,197 +4,864 @@
 
 ## 1. 说说你对 XSS 的理解
 
-- 定义
-  - XSS（Cross-Site Scripting，避免与 CSS 混淆）是指攻击者将恶意脚本注入页面，在受害者浏览器侧执行，从而窃取敏感信息或发起未授权操作。
-- 形成背景
-  - 早期主要是“跨站回显”，如今更多是“跨上下文执行”。是否跨站已非关键，“XSS”名称沿用至今。
-- 危害
-  - 盗取 Cookie/Token、会话接管、钓鱼跳转、键盘记录、蠕虫传播、发起 CSRF/越权等。
+### 一、初探XSS​
+跨站脚本攻击，英文全称是 Cross Site Script，本来缩写是 CSS，但是为了和层叠样式表（Cascading Style Sheet，CSS）有所区别，所以在安全领域叫做“XSS”。​
+XSS攻击，通常指黑客通过HTML注入 篡改网页，插入恶意脚本，从而在用户浏览网页时，控制用户浏览器的一种攻击行为。在这种行为最初出现之时，所有的演示案例全是跨域行为，所以叫做 "跨站脚本" 。时至今日，随着Web端功能的复杂化，应用化，是否跨站已经不重要了，但 XSS这个名字却一直保留下来。​
+随着Web发展迅速发展，Web开发已经被应用的非常广泛了，由之前的单一PC端扩展到现在的移动端（APP、H5），甚至包括桌面工具、设备大屏等等，所以在产生的应用场景越来越多，越来越复杂的情况下，同时大多数互联网（尤其是传统行业）的产品开发版本迭代上线时间非常短，一周一版本，两周一大版本的情况下，忽略了安全这一重要属性，一旦遭到攻击，后果将不堪设想。
+### 二、XSS攻击类型分类
 
-### XSS 的三种类型
+XSS攻击可以分为3类：反射型（非持久型）、存储型（持久型）、基于DOM XSS；
 
-- 反射型（非持久）
-  - 载荷随请求进入，服务端原样“反射”到响应并立即执行。常见于搜索、提示页。
-- 存储型（持久）
-  - 载荷被存储在 DB/缓存/日志，后续访问者都会触发。常见于评论、昵称、公告等字段。
+反射型​
+反射型XSS只是简单地把用户输入的数据“反射”给浏览器。也就是说，黑客往往需要诱使用户“点击”一个恶意链接，才能攻击成功。反射型XSS也叫做 “非持久型 XSS”（Non-persistent XSS）。​
+通常反射型XSS的恶意代码存在URL里，通过URL传递参数的功能，如网站搜索、跳转等。由于需要用户主动打开恶意的URL才能生效，攻击者往往会结合多种手段诱导用户点击。​
+一个最初级的反射型攻击是：我们对网页数据进行获取:
+
+```html
+
+<!DOCTYPE html>​
+<html lang="en">​
+<head>​
+    <meta charset="UTF-8">​
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">​
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">​
+    <title>XSS攻防演练</title>​
+</head>​
+<body>​
+    <div id="t"></div>​
+    <input id="s" type="button" value="这是一个按钮" onclick="test()">​
+</body>​
+<script>​
+    function test() {​
+        const arr = [​
+            '自定义的数据1', ​
+            '自定义的数据2', ​
+            '自定义的数据3', ​
+            '<img src="11" onerror="console.log(window.localStorage)" />'​
+        ];​
+        const t = document.querySelector('#t');​
+        arr.forEach(item => {​
+            const p = document.createElement('p');​
+            p.innerHTML = item;​
+            t.append(p);​
+        })​
+    }​
+</script>​
+</html>
+
+```
+存储型​
+存储型 XSS 会把用户输入的数据“存储”在服务器端。这种 XSS 具有很强的稳定性。​
+比较常见的一个场景就是，黑客写下一篇包含有恶意 JavaScript 代码的博客文章，文章发表后，所有访问该博客文章的用户，都会在他们的浏览器中执行这段恶意的 JavaScript 代码。黑客把恶意的脚本保存到服务器端，所以这种 XSS 攻击就叫做 “存储型 XSS”。
+
+```js
+<!-- 例如我们分别在网站中的输入框中输入以下信息，并保存到远程数据库 -->​
+<img src="11" onerror="console.log(window.localStorage)" />​
+<img src="11" onerror="alert(111)" />
+```
+
+### DOM 型 XSS
+
+DOM 型 XSS 是一种比较特殊的 XSS，需要满足几种条件才能发生，不太通用，但很隐蔽，危害较大。
+
+本质上是 DOM 节点的文本节点不可控，作为代码被执行了。
+
+用户 DOM 节点不可控，或者节点内容在前端直接当成可执行代码。
+
+会触发 XSS 的地方有很多，以下几个地方需要格外注意（页面已经存在）：
+
+- `document.write()`
+- `document.writeln()`
+- `xxx.innerHTML`
+- `xxx.outerHTML`
+- `xxx.html`
+- `document.attachEvent()`
+- `window.attachEvent()`
+- `window.location()`
+- `window.navigate()`
+
+前端开发者需要关注以上几个地方的可以被用户控制的点。如果使用了以上的方法，一定要避免在其中插入不可信数据。
+
+## 2. XSS 中的编码
+
+如果我们在页面中使用了上面提到的函数，能否先决定大部分攻击？
+
+不是一个简单的 XSS 攻击，在开发编码的时候还是有很多方法的。网页中存在编码。
+
+### HTML 实体编码
+
+不能使用富文本编辑器数据，只允许纯文本的内容金字塔式，把控制台上下文，该如何转义？
+
+```js
+function encodeForHTML(str) {
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;')
+        .replace(/\//g, '&#x2F;');
+}
+```
+
+这种转义后成对文本内容进行了转义，因此避免了脚本执行。转义规则如下的字符是 HTML 的通用字符，它的内容如下：
+
+我们需要保证插入的内容，先流经这里的全文，这里采用一个简单粗暴的一体化号验算，虽然可以逐字检查但不够优雅。
+
+### JavaScript 编码
+
+```js
+function encodeForJavaScript(str) {
+    return str.replace(/[^\w,\. ]/g, (c) => {
+        return '\\x' + c.charCodeAt(0).toString(16).padStart(2, '0');
+    });
+}
+```
+
+在程序逻辑中需要在输出前检查通用 style 标签
+
+```js
+style="...color:${userColor};..."
+```
+
+该场景下如果输入，系统用户可以构造来进行内容攻击，常见的攻击样式。
+
+但这样子并不一定行不通，能够继续方向上能有更多尝试的。
+
+比如：
+
+```html
+<div style="width: expression(alert(1))"></div>
+```
+
+在解决安全的过程中，不可一劳永逸，也就是说没有银弹。
+
+一旦我们加入金字塔，在里面进行换取换好，安全一点很重要，但依然需要关注。
+
+然而无法枚举，任何人一致来决定数据，手段一致有,名"控不完整"。
+
+通过编码要尽可能进行力刀刚控制保证内容不被执行，至少军队。
+
+## 3. CSRF 攻击及防护
+
+### 什么是 CSRF
+
+CSRF 攻击（Cross-Site Request Forgery）是针对用户身份进行或站服务器等资源进行攻击的行为。
+
+攻击者诱导用户打开第三方网站，利用用户已经获取的登录凭证。
+
+### CSRF 攻击类型
+
+常见的 CSRF 攻击方式有：
+
+- GET（Cross-Site Request Forgery）跨站请求伪造
+- POST 表单提交
+- XSS 注入攻击
+
+三者都是为了盗取用户的身份凭证等敏感数据。
+
+XSS 涉及的是三方网站，由攻击者利用注入方式，攻击用户端来获取用户数据。
+
+攻击者目的是为了盗取用户的身份凭证如用户登录令牌等数据。一般证明身份后，攻击者可以进行任意操作。
+
+### CSRF 攻击流程
+
+一个简单的 CSRF 攻击流程，取决于页面的请求：
+
+```html
+<img src="http://bank.com/transfer?amount=1000&to=hacker" />
+```
+
+这个看起来并没有危险，但实际上如果要不按正常流程来解析？
+
+用户如果在 A 网站已登录，在 B 网站构造了恶意代码。
+
+依照攻击者的来源，XSS 攻击可以分类为：
+
+- 反射型
+- 存储型
 - DOM 型
-  - 纯前端注入，使用不安全的 DOM API/危险函数在本地拼接和执行；不依赖服务端渲染。
 
-### 常见注入/执行上下文
+### 攻击流程
 
-- 文本节点：插入标签/脚本
-- 属性上下文：如 img/src、a/href、事件 onerror/onload
-- URL 上下文：javascript:、data:
-- JS 字面量上下文：把不可信数据拼进 `<script>`/内联事件中执行
-- 样式上下文：现代浏览器已限制高危用法（老 IE 有 expression）
+1. 攻击者构造出特定的第三方网页，含有请求目标网站接口的请求
+2. 用户打开该网页时，浏览器带上登录凭证，发起请求到目标网站
+3. 用户看到后，执行到攻击脚本，发送到攻击者的网站，或者冒充用户身份进行恶意操作
+4. 能够窃取用户数据并发送给攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者恶意的操作
 
----
+某种意义上看，CSRF 属于重放攻击。
 
-## 2. 典型 Payload（演示）
+### CSRF 攻击特点
 
-```html path=null start=null
-<!-- 基础弹窗 -->
-<script>alert(1)</script>
+- 攻击发生在第三方网站，具有隐蔽性
+- 利用用户在被攻击网站已经获取的登录凭证，篡改用户操作
+- 攻击利用受害者在被攻击网站的登录凭证，冒充受害者提交操作
+- 本质是利用了 Cookie 不受同源策略限制，并且会随着请求自动发送
 
-<!-- 属性触发 -->
-<img src="x" onerror="alert(1)">
+### CSRF 防护
 
-<!-- URL 方案 -->
-<a href="javascript:alert(1)">click</a>
+#### 同源检测
 
-<!-- DOM 型：hash 注入 -->
-<!-- URL: http://example.com/#" onmouseover="alert(1) -->
-<div id="app"></div>
+禁止来自不明域的请求
+
+#### SameSite Cookie
+
+设置 Cookie 的 SameSite 属性
+
+#### 添加验证
+
+对于敏感操作，添加验证码验证或重新输入密码
+
+#### 验证 Referer 头
+
+验证请求的来源，但可以被伪造
+
+#### CSRF Token
+
+CSRF Token 主要采用 token 四步形式，流程如下：
+
+1. 用户打开页面的时候，服务器生成时向用户颁发一个 Token
+2. 对于 GET 请求，Token 将附在请求地址之后。对于 POST 请求，需要在表单中增加一个隐藏域
+3. 用户提交请求后，服务端验证 Token 是否正确
+
+用户以上的方式，可以有效防御 CSRF 攻击。
+
+整个过程如下所示：
+
+获取 Token → 构造请求带上 Token → 服务端验证 Token
+
+检验的方式如下：
+
+- 根据token在数据层进行验证
+- 通过密钥和特殊字符加密
+- 对传入的数据域或上下文使用哈希验证
+
+以上这些都能帮助我们完成安全网络数据，对于这里面何种数据，切记不可懈怠。
+
+## 4. 说说你对前端权限的理解
+
+权限本身指认证，认证用户角色是否有操作的访问权限。就像我们经常坐动车的时候需要的身份检验，一般的三方认证方式。
+
+### 认证方式
+
+下面介绍几个我们工作中通常可以采用的方式：
+
+#### Session-Cookie
+
+利用服务器的 Session（会话）和浏览器的 Cookie 来实现前后端的认证。
+
+由于 HTTP 协议是无状态的，服务器正常情况下无法得知浏览器的信息。这个如果我们需要让它感知状态，就需要在服务端创建会话，并通过浏览器的请求携带在保存的会话记录中，每请求到服务时，先校验此请求中的 Cookie 所含的 sessionId 是否在服务端有记录，如果有，继续执行后续操作。
+
+流程如下图所示：
+
+Cookie 的工作机制是用户识别及状态管理。
+
+Session 是保存在服务器的一种数据结构，用来跟踪用户的状态，Session 可以保存在数据库里，也可以保存在缓存中。
+
+Cookie 是客户端保存用户信息的一种机制，用来记录用户的一些信息，也是实现 Session 的一种方式。
+
+#### Token
+
+身份验证的作用不仅用户是否，因为它还能够不共享，所以可以提供更好的安全性。
+
+Token 跟 Session-Cookie 认证方式中的 Session 本质不同，并非只是一个标识符，如一串字符串，包含用户的相关信息。
+
+主要流程是：
+
+1. 用户登录，输入用户名和密码
+2. 服务器验证成功后，生成 Token
+3. 服务器将 Token 返回给客户端
+4. 客户端收到 Token 以后存储起来，可以放在 Cookie 或者 Local Storage（本地存储）里
+5. 客户端每次向服务器请求资源时都带上服务器签发的 Token
+6. 服务器收到请求，验证 Token 有效性，成功则返回请求数据
+
+#### JWT（JSON Web Token）
+
+JWT 是一个开放标准，它定义了一种用于简洁，自包含的用于通信双方之间以 JSON 对象的形式安全传输信息的方法。
+
+使用 JWT（JSON Web Token）作为身份验证，它是基于 JSON 的身份验证方案。
+
+JWT 的原理是，服务器认证以后，生成一个 JSON 对象，发回给用户，用户与服务端通信的时候，都要发回这个 JSON 对象。
+
+其中，JWT 格式分为三个部分：
+
+- Header（头部）：描述 JWT 的元数据
+- Payload（负载）：用来存放实际需要传递的数据
+- Signature（签名）：对前两部分的签名，防止数据篡改
+
+#### OAuth2.0
+
+OAuth 2.0 是一个开放授权标准，它允许用户授权第三方应用访问他们存储在另外的服务提供者上的信息，而不需要将用户名和密码提供给第三方应用。
+
+流程如下：
+
+1. 客户端向认证服务器请求授权
+2. 用户同意授权
+3. 认证服务器返回 Access Token
+4. 客户端通过 Access Token 向资源服务器请求资源
+5. 资源服务器验证 Access Token，有效则返回资源
+
+#### SSO（单点登录）
+
+单点登录（Single Sign On），简称为 SSO，是比较流行的企业业务整合的解决方案之一。
+
+SSO 的定义是在多个应用系统中，用户只需要登录一次就可以访问所有相互信任的应用系统。
+
+SSO 并不等于单点登录，只是可以用相同的用户名和密码可以登录不同系统，达不到一次登录，多系统认证后的效果。
+
+## 5. CSP（Content Security Policy）可以解决什么问题？
+
+CSP（Content Security Policy）是为限制网页上可以加载和执行的资源。
+
+它可以通过 HTTP 响应头或 meta 标签来配置。
+
+它的作用是定义哪些资源可以被加载和执行，比如脚本、样式、字体等，这样可以防止 XSS 攻击，防止执行恶意代码。
+
+主要的防护方式如下：
+
+- 限制资源加载
+- 限制内联脚本执行
+- 禁止 eval() 等函数
+- 设置 HTTP 响应头
+
+在 Web 页面中，开发者通过 CSP 来设定规则：
+
+- 如果某个资源的来源不在白名单内，浏览器将停止加载该资源并向用户报出警告
+
+这样，即使攻击者成功注入了脚本，由于不在白名单中，浏览器也不会执行。
+
+主要用途和意义如下：
+
+- 防止 XSS 攻击
+- 防止内容注入
+- 报告违规行为，并设置 CSP 违规上报地址
+
+通过 CSP，可以有效防止 XSS 攻击，保护网站和用户的安全。
+
+## 6. 跨域
+
+### 什么是跨域
+
+跨域是指浏览器出于安全考虑，禁止向不同源的服务器发送请求。
+
+同源策略（Same-Origin Policy）是浏览器最核心也是最基本的安全功能。
+
+### 同源策略
+
+当协议、域名、端口号中任意一个不相同时，都会判断为不同源。不同源之间相互请求资源，就算跨域。
+
+特点：
+
+- 同源策略限制脚本和 Cookie 等的读写同源策略其实是大部分浏览器可控的。
+- 而且在实际应用上，还是有很多情况需要跨域访问资源。
+
+跨域的主要原因是为了安全，因为跨域可能会产生一些安全问题。
+
+之所以有这个限制，是因为没有这个限制很不安全。
+
+一个域名下的页面，可以任意请求另一个域名下的资源，效果可以认为该不安全，以免造成数据泄露，担保表都并不会进行数据提取的内容。
+
+所以可以发送请求，同时也限制了响应该数据不被读取上。服务端虽然接收到了攻击请求，响应数据后，浏览器也不会将结果返回给 JavaScript。
+
+### CORS（跨域资源共享）
+
+CORS（Cross-Origin Resource Sharing）跨域资源共享。
+
+服务器设置响应头，允许跨域访问。
+
+CORS 通过服务器增加特殊的响应头来允许跨域请求。
+
+流程如下：
+
+1. 浏览器发送预检请求（OPTIONS）
+2. 服务器返回允许跨域的响应头
+3. 浏览器发送实际请求
+4. 服务器返回数据
+
+### 简单请求和非简单请求
+
+CORS 请求分为两类：简单请求和非简单请求。
+
+#### 简单请求
+
+同时满足以下两个条件，就属于简单请求：
+
+1. 请求方法是：HEAD、GET、POST 三者之一
+2. HTTP 头信息不超过以下几个字段：
+   - Accept
+   - Accept-Language
+   - Content-Language
+   - Content-Type：为三者之一 `application/x-www-form-urlencoded`、`multipart/form-data`、`text/plain`
+
+为什么还有这样的限制条件？这是为了兼容表单，因为历史上一直可以发送表单请求。
+
+浏览器直接发出 CORS 请求。具体来说就是在请求中增加 Origin 字段，表示请求来源来自哪个协议域名端口），服务器通过检查这个请求来决定是否同意这个请求。
+
+#### 非简单请求
+
+不满足简单请求条件的，就属于非简单请求。
+
+比如请求方法是 PUT 或 DELETE，或 Content-Type 为 `application/json`，就属于非简单请求。
+
+非简单请求会先发送一次 OPTIONS 的预检请求，称为"预检"请求。
+
+预检请求的目的是询问服务器，当前网页所在的域名是否在服务器的白名单中，以及可以使用哪些 HTTP 方法和头字段。只有得到肯定答复，才会发出正式的请求，否则就会报错。
+
+所以在正式的请求之前，会首先发送一个 OPTIONS 请求，只有这个请求通过了，才会发送正式的请求。
+
+### 跨域解决方案
+
+#### Nginx 代理跨域
+
+通过 Nginx 代理服务器来转发请求，将数据国内转发，一方面在防止跨域。
+
+配置示例：
+
+```nginx
+location /api {
+    proxy_pass http://api.example.com;
+    add_header Access-Control-Allow-Origin *;
+    add_header Access-Control-Allow-Methods *;
+    add_header Access-Control-Allow-Headers *;
+}
+```
+
+#### JSONP
+
+JSONP（JSON with Padding）是一种跨域请求数据的方式。
+
+利用 `<script>` 标签没有跨域限制的特点，通过 `<script>` 标签指向一个需要访问的地址并提供一个回调函数来接收数据。
+
+```html
 <script>
-  // 不安全：直接拼接用户可控的 location.hash
-  app.innerHTML = location.hash.slice(1)
+function callback(data) {
+    console.log(data);
+}
+</script>
+<script src="http://example.com/api?callback=callback"></script>
+```
+
+#### PostMessage
+
+PostMessage 是 HTML5 新增的跨文档通信 API。
+
+可以用于解决以下问题：
+
+- 页面和其打开的新窗口之间的数据传递
+- 多窗口之间的数据传递
+- 页面与嵌套的 iframe 之间的消息传递
+- 上面三个场景的跨域数据传递
+
+语法：
+
+```js
+window.postMessage(message, targetOrigin);
+```
+
+### SameSite Cookie
+
+SameSite 是 Cookie 的一个属性，用来限制第三方 Cookie。
+
+它有三个值：
+
+- `Strict`：严格模式，完全禁止第三方 Cookie
+- `Lax`：宽松模式，允许部分情况携带 Cookie，比如链接跳转、预加载请求、GET 表单
+- `None`：任何情况下都会携带 Cookie，但需要设置 Secure 属性
+
+Cookie 语法：
+
+```
+Set-Cookie: key=value; SameSite=Lax
+```
+
+注意在 Chrome 91 后的版本中已经默认开启了，所以在设置时需要注意 SameSite 属性，否则 Cookie 可能无法正常工作。
+
+如果要设置为 `None`，必须同时设置 `Secure` 属性（Cookie 只通过 HTTPS 协议传送），否则无效。
+
+```
+Set-Cookie: key=value; SameSite=None; Secure
+```
+
+## 7. HTTPS 有哪些优点？
+
+HTTPS 相对于 HTTP，确实增加了安全性，比如可以防止数据在传输过程中被中间人形式的攻击，是比 HTTP 更为安全的协议。
+
+HTTPS 协议是由 HTTP 加上 TLS/SSL 协议构建的可进行加密传输、身份认证的网络协议，主要有以下几个优点：
+
+- 使用 HTTPS 协议可认证用户和服务器，确保数据发送到正确的客户机和服务器
+- 数据通过加密传输，防止被窃取
+- 数据不会被篡改，防止中间人攻击
+- 是目前架构下最安全的解决方案，虽不是绝对安全，但相比于 HTTP 要安全得多
+
+使用 HTTPS 协议需要到 CA（Certificate Authority，证书授权中心）申请证书，一般免费证书较少，因而需要一定费用。证书申请通过后，服务器会保存证书及私钥。
+
+另外，建立 HTTPS 连接比 HTTP 连接需要更多的时间和资源，称为握手延迟和加密成本。
+
+但由于是加密的连接，页面的加载速度会相对下降，并且由于 HTTPS 协议需要加密算法，会增加服务器和客户端的运算负担。
+
+尽管 HTTPS 增加了一些开销，但现在网站中，建议使用 HTTPS 协议构建所有网站，采用加密的站在搜索结果中的排名会更高。
+
+## 8. WebSocket 安全
+
+### 概述
+
+WebSocket 是一种在单个 TCP 连接上进行全双工通信的协议。
+
+WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。
+
+在 WebSocket API 中，浏览器和服务器只需要完成一次握手，两者之间就可以创建持久性的连接，并进行双向数据传输。
+
+WebSocket 协议是基于 HTTP 协议的，握手阶段采用 HTTP 协议，因此握手时不容易被屏蔽，能通过各种 HTTP 代理服务器。
+
+协议标识符是 `ws`（如果加密，则为 `wss`），服务器地址就是 URL。
+
+```
+ws://example.com:80/path
+wss://example.com:443/path
+```
+
+WebSocket 使用时需要先创建连接：
+
+```js
+const ws = new WebSocket('ws://example.com');
+```
+
+### 请求头
+
+| HTTP头 | 是否必需 | 解释 |
+|--------|---------|------|
+| Host | 是 | 主机 |
+| Upgrade | 是 | 值为 websocket，表示升级到 WebSocket 协议 |
+| Connection | 是 | 值为 Upgrade，表示升级到 WebSocket 连接 |
+| Sec-WebSocket-Key | 是 | 客户端生成的16字节随机数 Base64 编码 |
+| Sec-WebSocket-Version | 是 | WebSocket 协议版本 |
+| Origin | 可选 | 发起连接请求的源 |
+
+| 响应头 | 是否必需 | 解释 |
+|--------|---------|------|
+| Sec-WebSocket-Accept | 是 | 服务端识别确认连接生成的响应 |
+| Sec-WebSocket-Protocol | 可选 | 服务器支持的协议 |
+| Sec-WebSocket-Extensions | 可选 | 扩展字段 |
+
+### 安全问题
+
+WebSocket 是一个长连接应用中，开始与 HTTP 连接复用相同的安全架构，因此使用 WebSocket 的应用程序必须格外注意，首先要采用跟 HTTP 一样的用户认证，以及安全措施。
+
+#### 认证授权
+
+没有内置的认证机制。建议通过其他方式如 Token 进行认证，在连接时验证 Token，以及建立连接后每次消息交互都应验证权限等。
+
+避免不必要的数据泄露，确保只有授权的用户才能访问和操作数据。
+
+#### 输入验证
+
+跟其他协议一样，WebSocket 应用也会存在恶意代码风险，如：注入攻击、XSS 攻击等。
+
+因此在使用时应该验证输入，包括类型检查、长度限制等，避免恶意代码注入。
+
+#### 消息验证
+
+WebSocket 使用的是长连接，会在不同请求间共享连接状态。与 HTTP 请求不同，一个 WebSocket 连接会在多个消息间复用。
+
+因此需要对每条消息进行验证，包括来源验证、完整性验证等，避免恶意消息注入。
+
+#### CSRF 攻击
+
+WebSocket 连接通过 HTTP 握手建立，当客户端发起 WebSocket 请求时会带上 Cookie。
+
+攻击者可以利用这个特性，构造一个恶意网页，在受害者不知情的情况下建立 WebSocket 连接，从而实施 CSRF 攻击。
+
+防御措施：
+
+验证 Origin 头部的来源，确定请求来源是否合法。服务器可以检查请求的 Origin 是否在白名单中，只允许可信的来源建立连接。
+
+#### DOS 攻击（一种名为 Billion Laughs 的攻击）
+
+了攻击目标网站，攻击者发送了大量的 WebSocket 连接请求，这会消耗服务器大量资源。
+
+中间人攻击：
+
+如果使用的是 `ws://` 而不是加密的 `wss://`，则通信内容是明文传输的，可能被中间人截获和篡改。
+
+对策：
+
+- 使用 `wss://` 加密连接
+- 限制单个 IP 可建立连接的最大连接数
+- 实现超时机制，对于长时间没有活动的连接自动断开
+- 限制消息大小和频率
+
+针对服务器，可以通过限制单一客户端可建立的连接数的方式进行防护，此外还可以设置才发送一个单一的消息的数据大小，比如限制发送一个长文本消息大小，对数据进行分段，每次发送一定大小，安排发送次数，针对这些攻击，通过限制最大小和多个重组消息数量算息大小方式保护。
+
+#### 跨站点 WebSocket 劫持
+
+WebSocket 的跨站点请求，跨 iframe 脚本都会携带通行证如 Cookie。如果 WebSocket 连接没有 CSRF token，下面攻击可能得逞。
+
+这种攻击，在握手时就要避免，使用带有 CSRF token 的方式进行。
+
+WebSocket 心跳机制跟 HTTP 的会话管理有些不同，实际和额外的管理通信，在理由无法进行攻击时造成更全面防御，生成脚本检不一样，用户发起的请求跟 WebSocket 连接会携带 Cookie，但区别是满请求并不可以作为依赖，应当用额外的 Token 进行会话管理。
+
+中间人攻击：
+
+如果客户端使用了非加密的 WebSocket 连接，中间人攻击者可以拦截和修改通信数据。
+
+## 9. 什么是点击劫持？如何防止点击劫持？
+
+点击劫持（Clickjacking）是一种视觉欺骗的攻击手段，攻击者将目标网站嵌入到自己的网站中，并设置为透明，诱导用户在表面上看来进行点击操作，实际上点击了另一个网站的按钮。
+
+我们可以在页面中通过设置 X-Frame-Options 来防护。
+
+防护方法：
+
+- 使用 X-Frame-Options 响应头
+- 使用 CSP 的 frame-ancestors 指令
+- 使用 JavaScript 检测是否被嵌套
+
+## 10. 什么是 SameSite Cookie 属性？
+
+SameSite 是 HTTP 响应头 Set-Cookie 的一个属性。
+
+- `Strict`：严格模式，完全禁止第三方 Cookie
+- `Lax`：宽松模式，部分情况下允许携带 Cookie，为 Chrome 的默认值。如果这个请求是链接跳转、表单 GET 提交，可以作为第三方 Cookie
+- `None`：不限制，Cookie 在任何情况下都会发送，无论是否跨站都带上 Cookie
+
+注意：将 Cookie 设为 `None` 时，不仅需要显式指定 SameSite，这样做是无效的。
+
+## 11. Cookie 的 SameSite 属性有什么作用？
+
+Cookie 的 SameSite 属性，该属性给 Cookie 设置了一个 SameSite 属性，用来防止 CSRF 攻击和用户追踪。
+
+- 第一方 Cookie：第一方 Cookie 由当前网页的域名设置的 Cookie
+- 第三方 Cookie：如果网站嵌入其他域名（比如广告、统计代码等），则第三方网站设置的 Cookie 就是第三方 Cookie
+
+常见的第三方 Cookie 场景，它在过去用于追踪用户，活动并用来做广告推荐。比如 Facebook 和 Google 也会有第三方 Cookie 的生成。
+
+### SameSite 的作用
+
+Cookie 的 SameSite 属性用来限制第三方 Cookie。从而增加安全性，这是对 CSRF 攻击的防御机制，可以有效阻止 CSRF 攻击。
+
+举例来说：用户登录了银行网站 bank.com，银行服务器发送了一个 Cookie：
+
+```
+Set-Cookie: session=abc123
+```
+
+用户又访问了恶意网站 evil.com，上面有一个表单：
+
+```html
+<form method="POST" action="https://bank.com/transfer">
+  <input type="hidden" name="to" value="hacker" />
+  <input type="hidden" name="amount" value="10000" />
+</form>
+```
+
+这种攻击就是典型的 CSRF 攻击，而通过设置 SameSite 属性可以防止：
+
+- 第一方 Cookie，`SameSite` 属性不起作用，之前有行为 Cookie 在请求时，会照常发送
+- 只有网站与 Cookie 机源协议域名端口号都一致，才会发送 Cookie
+
+```
+Set-Cookie: session=abc123; SameSite=Strict
+```
+
+该设置过于严格，可能造成非常不好的用户体验，比如，当前网站有一个链接，用户点击后无法携带 GitHub 中的 Cookie。这样看起来只是未登录状态。
+
+### Lax
+
+`Lax` 规则稍稍放宽，大多数情况不发送第三方 Cookie，但链接除外，只在三种情况下会发送：链接跳转、预加载请求、GET 表单，详见下表：
+
+| 请求类型 | 示例 | 正常情况 | Lax |
+|---------|------|---------|-----|
+| 链接 | `<a href="..."></a>` | 发送 Cookie | 发送 Cookie |
+| 预加载 | `<link rel="prerender" href="..."/>` | 发送 Cookie | 发送 Cookie |
+| GET 表单 | `<form method="GET" action="...">` | 发送 Cookie | 发送 Cookie |
+| POST 表单 | `<form method="POST" action="...">` | 发送 Cookie | 不发送 |
+| iframe | `<iframe src="..."></iframe>` | 发送 Cookie | 不发送 Cookie |
+| AJAX | `$.get("...")` | 发送 Cookie | 不发送 |
+| Image | `<img src="...">` | 发送 Cookie | 不发送 Cookie |
+
+设置了 Lax 后，基本就可以杜绝 CSRF 攻击了，同时也不会有太大的用户体验影响。
+
+### None
+
+网站可以选择显式关闭 SameSite 属性，将其设为 None，该样可以让跨站发送 Cookie，不过，前提时需要设置 Secure 属性（Cookie 只通过 HTTPS 协议发送），否则无效。
+
+```
+Set-Cookie: key=value; SameSite=None; Secure
+```
+
+下面的设置无效：
+
+```
+Set-Cookie: key=value; SameSite=None
+```
+
+## 12. Cookie 中的 HttpOnly 属性有什么用途？
+
+HttpOnly 是包含在 HTTP 响应头 Set-Cookie 中的属性。
+
+当 Cookie 设置了 HttpOnly 标记后，该 Cookie 无法通过客户端脚本访问。
+
+这样即使网站存在 XSS 漏洞，也无法通过 JavaScript 读取 Cookie，避免 Cookie 被盗取。
+
+有效防御 XSS 攻击。
+
+## 13. 前端的常规安全策略
+
+常见的前端安全策略包括：
+
+- 防御 XSS 攻击：转义 HTML + 净化 HTML + CSP
+- 防御 CSRF 攻击：SameSite Cookie + CSRF Token + Referer 验证
+- 对第三方包和组件进行检测：NSP（Node Security Platform）、Snyk
+- HTTPS 加密传输
+- 敏感数据加密存储
+
+## 14. 静态资源完整性校验
+
+使用内容分发网络（CDN）在多个站点之间共享脚本和样式表等文件可以提高站点性能并节省带宽，但使用 CDN 也存在风险，攻击者如果劫持了 CDN，就可以向其中注入任意恶意代码。
+
+又或者 CDN 服务商被黑，导致 CDN 上的文件被篡改。
+
+防护方式：
+
+使用 Subresource Integrity（SRI，子资源完整性）标准，可以验证引入的资源是否被篡改。
+
+```html
+<script 
+  src="https://cdn.example.com/app.js"
+  integrity="sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC"
+  crossorigin="anonymous">
 </script>
 ```
 
----
+## 15. 前端防止抄袭
 
-## 3. 漏洞到修复（搜索页示例）
+常见方式：
 
-```html path=null start=null
-<!-- 漏洞页 search.html -->
-<input id="q" placeholder="keyword" />
-<div id="result"></div>
-<script>
-  const params = new URLSearchParams(location.search)
-  const q = params.get('q') || ''
-  // 漏洞：把不可信输入直接拼到 HTML
-  result.innerHTML = `您搜索了：<b>${q}</b>`
-</script>
+- 禁用右键
+- 禁用 F12
+- 禁用查看源代码
+- 混淆和加密：对 JavaScript 代码进行混淆、压缩、加密
+- 水印：在页面上添加水印，追踪来源
+
+## 16. iframe 安全
+
+使用 iframe 可能存在的安全问题：
+
+- 嵌入第三方内容会有不可控因素，尤其当第三方出现安全漏洞时，也会影响到我们的安全
+- 攻击者可以将目标网站嵌入的方式放在自己网站中，并设置为透明，部署诱导点击攻击
+- 跨域通信问题
+
+防护方案：
+
+- 设置 X-Frame-Options 响应头，告知浏览器页面是否可以在 `<iframe>` 中展示
+  - `DENY`：不允许被任何页面嵌入
+  - `SAMEORIGIN`：只允许在相同域名页面中被嵌入
+  - `ALLOW-FROM uri`：允许在指定来源的页面中被嵌入
+
+- 使用 CSP 的 frame-ancestors 指令
+- 使用 sandbox 属性限制 iframe 权限
+
+## 17. SQL 注入
+
+SQL 注入是一种常见的安全漏洞，攻击者通过在输入字段中插入恶意 SQL 代码，从而执行非法的数据库操作。
+
+防护方式：
+
+- 后端进行严格的输入验证，对敏感字符过滤
+- 使用参数化查询，避免拼接 SQL，不使用原生语句
+- 限制数据库权限
+- 使用 ORM（对象关系映射）框架
+- 记录日志：记录所有数据库操作，便于审计和追踪
+
+## 18. CSRF 攻击及防护
+
+CSRF（Cross-Site Request Forgery，跨站请求伪造）攻击：
+
+- 利用用户已登录的身份（在用户本人毫不知情的情况下），以用户的名义完成非法操作
+- 利用已通过认证的用户访问更高权限的接口
+- 利用已通过认证的用户完成对服务器的恶意请求
+- 利用已通过的认证用户权限在网站商城上发表恶意评论
+
+攻击流程：
+
+1. 受害者登录目标网站，保存了登录状态
+2. 攻击者引诱受害者访问攻击网站
+3. 攻击网站向目标网站发送请求
+4. 目标网站执行请求（带着受害者的登录状态）
+
+防护方式：
+
+- 验证来源，限制 Cookie 使用，通过 SameSite 限制 Cookie 发送
+- GET 请求不对数据进行修改，避免通过简单的 GET 请求就能触发 CSRF 攻击
+- 验证 Referer 来限制请求来源，虽然并不可靠，因为 Referer 可能被伪造，但服务器端不会时刻验证 Referer
+- 加入验证码或 CSRF Token 验证，这是目前公认最有效的方案
+
+### Token 验证流程：
+
+1. 服务器生成 Token，存储在 Session 中
+2. 前端获取 Token，在每次请求时携带
+3. 服务器验证请求中的 Token 与 Session 中的 Token 一致性，一致则继续执行，否则拒绝请求
+
+## 19. 中间人攻击
+
+中间人攻击（Man-in-the-Middle Attack，MITM），是指攻击者与通信的两端分别建立连接，又能够完全控制通信内容的攻击方式。
+
+攻击者不仅能够获取双方的通信内容，还可以修改通信内容，使得双方认为在和对方直接通信，实际上整个通信过程都被攻击者控制。
+
+### 攻击流程：
+
+1. 客户端发送请求到服务端，在中间节点被劫持
+2. 攻击者作为中间人，将客户端的请求转发给服务器
+3. 服务器返回响应，攻击者截获响应
+4. 攻击者将篡改后的响应返回给客户端
+
+### 常见的中间人攻击方式：
+
+#### ARP 欺骗
+
+通过伪造 IP 地址和 MAC 地址，进行 ARP 欺骗，能够在局域网中窃听和篡改通信。
+
+#### DNS 劫持
+
+通过劫持 DNS 服务器，将域名解析到攻击者的服务器上。
+
+#### 伪造证书
+
+攻击者在客户端和服务器之间，使用自己签发的【伪造的】证书，欺骗客户端。
+
+### 防护方式：
+
+#### 使用 HTTPS
+
+是一种最基本有效的方法，可以加密通信内容，防止被窃听和篡改。
+
+#### 证书验证
+
+客户端应该验证服务器的证书，确保证书合法有效。
+
+#### 不使用公共 WiFi
+
+避免使用不安全的公共 WiFi，减少被攻击的风险。
+
+## 20. 点击劫持
+
+点击劫持（Clickjacking）：利用透明的 iframe 覆盖在页面之上，诱使用户点击。
+
+主要有两种方式：
+
+1. 攻击者创建一个网页，利用一个透明的 iframe 覆盖在一个按钮上，实际上用户点击的是 iframe 上的按钮
+2. 攻击者创建一个网页，网页内容和目标网站相似，诱使用户在网页上进行操作，实际在伪造网站上操作
+
+防护方式：
+
+- 设置 X-Frame-Options 响应头
+
+```
+X-Frame-Options: DENY
 ```
 
-修复（按上下文编码/使用文本 API）：
+该响应头用来告知浏览器一个页面是否可以在 `<iframe>` 中展示：
 
-```html path=null start=null
-<script>
-  const params = new URLSearchParams(location.search)
-  const q = params.get('q') || ''
-  const b = document.createElement('b')
-  b.textContent = q                 // 文本写入用 textContent
-  result.textContent = '您搜索了：'  // 不拼 HTML 结构
-  result.appendChild(b)
-</script>
-```
-
----
-
-## 4. DOM 型 XSS 高频“危险点/安全替代”
-
-- 危险 sink
-  - innerHTML、outerHTML、document.write、insertAdjacentHTML
-  - eval、new Function、setTimeout/setInterval(字符串)
-  - jQuery.html()
-- 安全替代
-  - textContent/innerText、createTextNode/append
-  - setAttribute（值需按上下文编码）
-  - 模板引擎/框架“默认转义”输出
-- 建议
-  - URL 参数、Hash、表单、富文本数据，在“渲染前”进行净化/编码
-
----
-
-## 5. 编码与过滤误区
-
-- 仅做字符替换（如 `<` → `&lt;`）但忽略属性/URL/JS 上下文，仍可被绕过
-- encodeURI/escape ≠ 安全，必须“按输出上下文编码”
-  - 文本节点：HTML 实体编码 `< > & " '`
-  - 属性值：属性必须加引号，并对值进行 HTML 编码；禁止拼接 on* 事件
-  - URL：对参数使用 encodeURIComponent，再拼进安全的 href/src（限制协议白名单）
-  - JS 字面量：JSON.stringify 生成安全字符串，不拼接可执行代码
-
----
-
-## 6. 富文本场景（仅允许少量标签）
-
-- 使用专用净化库（JS：DOMPurify/xss；Python：Bleach 等）
-- DOMPurify 示例：
-
-```html path=null start=null
-<script src="https://unpkg.com/dompurify@3.0.6/dist/purify.min.js"></script>
-<script>
-  const dirty = '<p onclick="alert(1)">Hi <img src=x onerror=alert(2) /></p>'
-  const clean = DOMPurify.sanitize(dirty, {
-    ALLOWED_TAGS: ['p','b','i','strong','em','a','img'],
-    ALLOWED_ATTR: ['href','src','alt','title'],
-    ALLOW_DATA_ATTR: false
-  })
-  container.innerHTML = clean
-</script>
-```
-
----
-
-## 7. CSP（Content-Security-Policy）
-
-- 目标：限制脚本来源与执行方式，显著压缩注入的执行面
-- 推荐策略（可先 Report-Only 观察）：
-
-```http path=null start=null
-Content-Security-Policy:
-  default-src 'self';
-  script-src 'self' 'nonce-r4nd0m' https://cdn.example.com;
-  object-src 'none'; base-uri 'self'; frame-ancestors 'self';
-  upgrade-insecure-requests; report-to csp-endpoint;
-```
-
-```http path=null start=null
-Content-Security-Policy-Report-Only: script-src 'self' 'nonce-r4nd0m'
-```
-
-- 要点
-  - 默认禁用内联脚本；通过 nonce/hash 放行受信脚本
-  - 严格脚本域名白名单；对跨域框架使用 frame-ancestors
-  - 配置 report-to/uri 观察违规并治理
-
----
-
-## 8. Cookie / 会话安全
-
-| 属性      | 作用                         | 备注                                  |
-|-----------|------------------------------|---------------------------------------|
-| HttpOnly  | 禁止 JS 读取 Cookie          | 降低 XSS 后的 Cookie 被盗风险        |
-| Secure    | 仅 HTTPS 传输                | 避免明文窃听                          |
-| SameSite  | Lax/Strict/None(+Secure)    | 缓解 CSRF；带跨站场景需 None+Secure  |
-
-- 结合：会话签名/轮换/过期、CSRF Token、防重放等
-
----
-
-## 9. 框架与模板
-
-- Vue：默认转义；谨慎 v-html，需净化后使用
-- React：默认转义；dangerouslySetInnerHTML 仅在净化后使用
-- SSR/模板引擎：保持默认转义，区分“文本输出”与“原样输出”
-
----
-
-## 10. 自测 Payload 清单（回归必测）
-
-```text path=null start=null
-<script>alert(1)</script>
-<svg onload=alert(1)></svg>
-<img src=x onerror=alert(1)>
-<a href=javascript:alert(1)>x</a>
-" autofocus onfocus=alert(1) "
-<iframe srcdoc="<script>alert(1)</script>"></iframe>
-"><img src=x onerror=alert(1)>
-```
-
-- 注入覆盖：文本/属性/URL/富文本/模板插值/Hash/存储字段
-- 验证：编码是否正确、CSP 是否拦截、是否有告警与上报
-
----
-
-## 11. 最小落地清单（工程化）
-
-- [ ] 统一按上下文输出编码：文本/属性/URL/JS
-- [ ] 禁用危险 sink（innerHTML/document.write/eval 等），或集中封装并审计
-- [ ] 富文本净化：DOMPurify/xss + 明确白名单
-- [ ] CSP：script-src 使用 nonce/hash + 域名白名单；frame-ancestors 防点击劫持；object-src none
-- [ ] Cookie：HttpOnly/Secure/SameSite；关键接口配合 CSRF Token
-- [ ] 依赖与第三方：SRI 校验/锁版本/域名白名单；必要时沙箱隔离
-- [ ] 监控：开启 CSP Report、前端错误上报与告警（含采样/聚合）
+- `DENY`：表示该页面不允许在 iframe 中展示，即使在同域名内也不行
+- `SAMEORIGIN`：表示该页面可以在相同域名页面的 iframe 中展示
+- `ALLOW-FROM uri`：表示该页面可以在指定来源的 iframe 中展示
