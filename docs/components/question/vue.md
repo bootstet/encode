@@ -23,7 +23,7 @@ Vue2.js 是采用**数据劫持**结合**发布者-订阅者模式**的方式，
 
 <img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a286bdc076ae425fb9591bb8c4153240~tplv-k3u1fbpfcp-watermark.awebp" alt="img" style="zoom:67%;" />
 
-### 3. 使用 Object.defineProperty() 来进行数据劫持有什么缺点？
+### 3. 使用 Object.defineProperty()  来进行数据劫持有什么缺点？
 
 在对一些属性进行操作时，使用这种方法无法拦截，比如通过下标方式修改数组数据或者给对象新增属性，这都不能触发组件的重新渲染，因为 Object.defineProperty 不能拦截到这些操作。更精确的来说，对于数组而言，大部分操作都是拦截不到的，只是 Vue 内部通过重写函数的方式解决了这个问题。
 
