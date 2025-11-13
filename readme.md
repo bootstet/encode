@@ -66,6 +66,11 @@ pnpm run lint
 ```bash
 npm install -g conventional-changelog-cli
 pnpm run changelog
+
+
+```
+```js
+构建测试
 ```
 
 ## :email: 联系
@@ -75,3 +80,5 @@ pnpm run changelog
 - **GitHub**: <https://github.com/bootstet/encode>
 
 </br>
+
+
