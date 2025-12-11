@@ -58,6 +58,7 @@ export default defineConfig4CustomTheme({
 					{text: '总览', link: '/interview/index.md' },
 					{text: '一页纸：Vue3', link: '/interview/one-pagers/vue3.md' },
 					{text: '简历', link: '/interview/one-pagers/RESUME.md' },
+					{text: '简历1', link: '/interview/one-pagers/RESUME1.md' },
 					{text: '战役卡：小程序提速', link: '/interview/battle-cards/perf-miniprogram.md' },
 					{text: '高频50题', link: '/interview/cards/50-questions.md' },
 				]	
