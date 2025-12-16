@@ -1,6 +1,6 @@
 {
   "name": "bootstet-commitlint-config",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "main": "index.js",
   "description": "Git规范",
   "keywords": [
