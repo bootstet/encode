@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
 #. "$(dirname "$0")/h"
+pnpm run fe-lint
 echo "pre Commit message: $1"
