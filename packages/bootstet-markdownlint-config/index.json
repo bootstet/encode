@@ -12,6 +12,7 @@
   "line-length": false,
   "no-inline-html": false,
   "no-duplicate-header": false,
+  "no-multiple-blanks": false,
   "proper-names": {
     "names": [
       "JavaScript",
@@ -26,6 +27,7 @@
       "SCSS",
       "HTTP",
       "HTTPS",
+      "http",
       "WebSocket",
       "ECMAScript",
       "ECMAScript 2015",
