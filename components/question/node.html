@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Node.js 高级编程（核心模块、模块加载机制） 作业地址： | bootstet</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/encode/img/logo.jpeg">
+    <meta name="description" content="前端编码规范工程化">
+    <meta name="keywords" content="前端编码规范工程化">
+    
+    <link rel="preload" href="/encode/assets/css/0.styles.66d56a42.css" as="style"><link rel="preload" href="/encode/assets/js/app.ec29c162.js" as="script"><link rel="preload" href="/encode/assets/js/2.5e8d92a0.js" as="script"><link rel="preload" href="/encode/assets/js/1.d8615a3a.js" as="script"><link rel="preload" href="/encode/assets/js/97.30d716a7.js" as="script"><link rel="prefetch" href="/encode/assets/js/10.b7753eb9.js"><link rel="prefetch" href="/encode/assets/js/100.a164d413.js"><link rel="prefetch" href="/encode/assets/js/101.1bf95e44.js"><link rel="prefetch" href="/encode/assets/js/102.c83f9525.js"><link rel="prefetch" href="/encode/assets/js/103.9c01454e.js"><link rel="prefetch" href="/encode/assets/js/104.c2b4bc3e.js"><link rel="prefetch" href="/encode/assets/js/105.0ff6616b.js"><link rel="prefetch" href="/encode/assets/js/106.db5889e6.js"><link rel="prefetch" href="/encode/assets/js/107.079cb524.js"><link rel="prefetch" href="/encode/assets/js/108.de4f927e.js"><link rel="prefetch" href="/encode/assets/js/109.7f5077ba.js"><link rel="prefetch" href="/encode/assets/js/11.3c41a4f3.js"><link rel="prefetch" href="/encode/assets/js/110.52062201.js"><link rel="prefetch" href="/encode/assets/js/111.9145eb4a.js"><link rel="prefetch" href="/encode/assets/js/112.c7bb3f2b.js"><link rel="prefetch" href="/encode/assets/js/113.18b3a51d.js"><link rel="prefetch" href="/encode/assets/js/114.b6e5a738.js"><link rel="prefetch" href="/encode/assets/js/115.c5cc718c.js"><link rel="prefetch" href="/encode/assets/js/116.e66a98ba.js"><link rel="prefetch" href="/encode/assets/js/117.67cb7b71.js"><link rel="prefetch" href="/encode/assets/js/118.eed69e4c.js"><link rel="prefetch" href="/encode/assets/js/119.d4ab01cb.js"><link rel="prefetch" href="/encode/assets/js/12.a9b5f75f.js"><link rel="prefetch" href="/encode/assets/js/120.19d237e3.js"><link rel="prefetch" href="/encode/assets/js/121.bf817c87.js"><link rel="prefetch" href="/encode/assets/js/122.5ff06918.js"><link rel="prefetch" href="/encode/assets/js/123.d1f8c7f1.js"><link rel="prefetch" href="/encode/assets/js/124.37091ecd.js"><link rel="prefetch" href="/encode/assets/js/125.6e225ed7.js"><link rel="prefetch" href="/encode/assets/js/126.f2d1b636.js"><link rel="prefetch" href="/encode/assets/js/127.ffc1eedb.js"><link rel="prefetch" href="/encode/assets/js/128.0622721f.js"><link rel="prefetch" href="/encode/assets/js/129.10b8938a.js"><link rel="prefetch" href="/encode/assets/js/13.2c49ab38.js"><link rel="prefetch" href="/encode/assets/js/130.ff5d6e03.js"><link rel="prefetch" href="/encode/assets/js/131.382bea10.js"><link rel="prefetch" href="/encode/assets/js/132.8fd176bd.js"><link rel="prefetch" href="/encode/assets/js/133.6dd6dcc0.js"><link rel="prefetch" href="/encode/assets/js/134.e9ca4f81.js"><link rel="prefetch" href="/encode/assets/js/135.b7ab6d0e.js"><link rel="prefetch" href="/encode/assets/js/136.4fa1c9a3.js"><link rel="prefetch" href="/encode/assets/js/137.90c89811.js"><link rel="prefetch" href="/encode/assets/js/138.dc0b93c7.js"><link rel="prefetch" href="/encode/assets/js/139.d41c5577.js"><link rel="prefetch" href="/encode/assets/js/14.72f22f7c.js"><link rel="prefetch" href="/encode/assets/js/140.bdae6738.js"><link rel="prefetch" href="/encode/assets/js/141.b2342d82.js"><link rel="prefetch" href="/encode/assets/js/142.b18d9372.js"><link rel="prefetch" href="/encode/assets/js/143.66c73c13.js"><link rel="prefetch" href="/encode/assets/js/144.52d66c89.js"><link rel="prefetch" href="/encode/assets/js/145.c8b54606.js"><link rel="prefetch" href="/encode/assets/js/146.bc4b632a.js"><link rel="prefetch" href="/encode/assets/js/147.c0ea6ba7.js"><link rel="prefetch" href="/encode/assets/js/148.2fed6ee4.js"><link rel="prefetch" href="/encode/assets/js/149.fe92b054.js"><link rel="prefetch" href="/encode/assets/js/15.f6ccec65.js"><link rel="prefetch" href="/encode/assets/js/150.3a26fc62.js"><link rel="prefetch" href="/encode/assets/js/151.a2c7daeb.js"><link rel="prefetch" href="/encode/assets/js/152.afc5f723.js"><link rel="prefetch" href="/encode/assets/js/153.e46b7d12.js"><link rel="prefetch" href="/encode/assets/js/154.8761ccb9.js"><link rel="prefetch" href="/encode/assets/js/155.74890302.js"><link rel="prefetch" href="/encode/assets/js/156.ebb742af.js"><link rel="prefetch" href="/encode/assets/js/157.363d1278.js"><link rel="prefetch" href="/encode/assets/js/158.58a32375.js"><link rel="prefetch" href="/encode/assets/js/159.0fa8ffc4.js"><link rel="prefetch" href="/encode/assets/js/16.644fe2ba.js"><link rel="prefetch" href="/encode/assets/js/160.0f450f78.js"><link rel="prefetch" href="/encode/assets/js/161.f587b7aa.js"><link rel="prefetch" href="/encode/assets/js/162.71c98cf6.js"><link rel="prefetch" href="/encode/assets/js/163.64217615.js"><link rel="prefetch" href="/encode/assets/js/164.efe2732e.js"><link rel="prefetch" href="/encode/assets/js/165.443cd8d2.js"><link rel="prefetch" href="/encode/assets/js/166.47c8cb3e.js"><link rel="prefetch" href="/encode/assets/js/167.32fd6c2f.js"><link rel="prefetch" href="/encode/assets/js/168.cc306dd7.js"><link rel="prefetch" href="/encode/assets/js/169.4893e4c8.js"><link rel="prefetch" href="/encode/assets/js/17.3b4d04ba.js"><link rel="prefetch" href="/encode/assets/js/170.4bd9e330.js"><link rel="prefetch" href="/encode/assets/js/171.12ba9be3.js"><link rel="prefetch" href="/encode/assets/js/172.2d5dae21.js"><link rel="prefetch" href="/encode/assets/js/173.c29bf625.js"><link rel="prefetch" href="/encode/assets/js/174.66fd5411.js"><link rel="prefetch" href="/encode/assets/js/175.ba028620.js"><link rel="prefetch" href="/encode/assets/js/176.96ef9b75.js"><link rel="prefetch" href="/encode/assets/js/177.9bd5f686.js"><link rel="prefetch" href="/encode/assets/js/178.efb2ac5e.js"><link rel="prefetch" href="/encode/assets/js/179.ab921d6a.js"><link rel="prefetch" href="/encode/assets/js/18.762d806c.js"><link rel="prefetch" href="/encode/assets/js/180.842d88e4.js"><link rel="prefetch" href="/encode/assets/js/181.0288279f.js"><link rel="prefetch" href="/encode/assets/js/182.470f9ef1.js"><link rel="prefetch" href="/encode/assets/js/183.9b56fff2.js"><link rel="prefetch" href="/encode/assets/js/184.8131a112.js"><link rel="prefetch" href="/encode/assets/js/185.2e365c86.js"><link rel="prefetch" href="/encode/assets/js/186.19678c53.js"><link rel="prefetch" href="/encode/assets/js/187.9ddde7fc.js"><link rel="prefetch" href="/encode/assets/js/188.964db173.js"><link rel="prefetch" href="/encode/assets/js/189.468cf1b8.js"><link rel="prefetch" href="/encode/assets/js/19.c5695532.js"><link rel="prefetch" href="/encode/assets/js/190.0486499d.js"><link rel="prefetch" href="/encode/assets/js/191.263096f8.js"><link rel="prefetch" href="/encode/assets/js/192.1f02538e.js"><link rel="prefetch" href="/encode/assets/js/193.f9f8345d.js"><link rel="prefetch" href="/encode/assets/js/194.37548087.js"><link rel="prefetch" href="/encode/assets/js/195.839f1b20.js"><link rel="prefetch" href="/encode/assets/js/196.22e242d9.js"><link rel="prefetch" href="/encode/assets/js/197.00c0404f.js"><link rel="prefetch" href="/encode/assets/js/198.cc29c8ee.js"><link rel="prefetch" href="/encode/assets/js/199.c239a206.js"><link rel="prefetch" href="/encode/assets/js/20.66b9611c.js"><link rel="prefetch" href="/encode/assets/js/200.bef137ef.js"><link rel="prefetch" href="/encode/assets/js/201.86c9f523.js"><link rel="prefetch" href="/encode/assets/js/202.2f0c020f.js"><link rel="prefetch" href="/encode/assets/js/203.2267dbaf.js"><link rel="prefetch" href="/encode/assets/js/204.276c1b61.js"><link rel="prefetch" href="/encode/assets/js/205.a35de7d5.js"><link rel="prefetch" href="/encode/assets/js/206.3afe4f82.js"><link rel="prefetch" href="/encode/assets/js/207.f72d8502.js"><link rel="prefetch" href="/encode/assets/js/208.0705b595.js"><link rel="prefetch" href="/encode/assets/js/209.2a47da4d.js"><link rel="prefetch" href="/encode/assets/js/21.b3177842.js"><link rel="prefetch" href="/encode/assets/js/210.7a9f5625.js"><link rel="prefetch" href="/encode/assets/js/22.8d9e2fa3.js"><link rel="prefetch" href="/encode/assets/js/23.c6de4485.js"><link rel="prefetch" href="/encode/assets/js/24.9278000f.js"><link rel="prefetch" href="/encode/assets/js/25.673844e9.js"><link rel="prefetch" href="/encode/assets/js/26.9abea99c.js"><link rel="prefetch" href="/encode/assets/js/27.65abdaf1.js"><link rel="prefetch" href="/encode/assets/js/28.599cf317.js"><link rel="prefetch" href="/encode/assets/js/29.5f936111.js"><link rel="prefetch" href="/encode/assets/js/3.a7b0bd92.js"><link rel="prefetch" href="/encode/assets/js/30.bad85012.js"><link rel="prefetch" href="/encode/assets/js/31.0988e131.js"><link rel="prefetch" href="/encode/assets/js/32.09be3268.js"><link rel="prefetch" href="/encode/assets/js/33.153d7f4a.js"><link rel="prefetch" href="/encode/assets/js/34.6f0eccc0.js"><link rel="prefetch" href="/encode/assets/js/35.51a9e199.js"><link rel="prefetch" href="/encode/assets/js/36.4f089c50.js"><link rel="prefetch" href="/encode/assets/js/37.d84c4270.js"><link rel="prefetch" href="/encode/assets/js/38.9a89c937.js"><link rel="prefetch" href="/encode/assets/js/39.89b7b97b.js"><link rel="prefetch" href="/encode/assets/js/4.953a3f9d.js"><link rel="prefetch" href="/encode/assets/js/40.ddefbfce.js"><link rel="prefetch" href="/encode/assets/js/41.0e10a8ee.js"><link rel="prefetch" href="/encode/assets/js/42.907bb674.js"><link rel="prefetch" href="/encode/assets/js/43.777877d4.js"><link rel="prefetch" href="/encode/assets/js/44.3bba0681.js"><link rel="prefetch" href="/encode/assets/js/45.b72fcf0d.js"><link rel="prefetch" href="/encode/assets/js/46.a9570dff.js"><link rel="prefetch" href="/encode/assets/js/47.3c678213.js"><link rel="prefetch" href="/encode/assets/js/48.7f8e4762.js"><link rel="prefetch" href="/encode/assets/js/49.8d2fd5f8.js"><link rel="prefetch" href="/encode/assets/js/5.b7331e62.js"><link rel="prefetch" href="/encode/assets/js/50.478f11ce.js"><link rel="prefetch" href="/encode/assets/js/51.3eb99b4d.js"><link rel="prefetch" href="/encode/assets/js/52.857aa9a7.js"><link rel="prefetch" href="/encode/assets/js/53.ee89a755.js"><link rel="prefetch" href="/encode/assets/js/54.0742a1ee.js"><link rel="prefetch" href="/encode/assets/js/55.16a40085.js"><link rel="prefetch" href="/encode/assets/js/56.200b4e1f.js"><link rel="prefetch" href="/encode/assets/js/57.ad67b3e8.js"><link rel="prefetch" href="/encode/assets/js/58.8efb2ff1.js"><link rel="prefetch" href="/encode/assets/js/59.797eb0b5.js"><link rel="prefetch" href="/encode/assets/js/6.190d022e.js"><link rel="prefetch" href="/encode/assets/js/60.86f32fd4.js"><link rel="prefetch" href="/encode/assets/js/61.178ac62a.js"><link rel="prefetch" href="/encode/assets/js/62.9ffa202b.js"><link rel="prefetch" href="/encode/assets/js/63.97b83eed.js"><link rel="prefetch" href="/encode/assets/js/64.9d7796be.js"><link rel="prefetch" href="/encode/assets/js/65.93a4820b.js"><link rel="prefetch" href="/encode/assets/js/66.ce9f8cf7.js"><link rel="prefetch" href="/encode/assets/js/67.e855769e.js"><link rel="prefetch" href="/encode/assets/js/68.b438b055.js"><link rel="prefetch" href="/encode/assets/js/69.4850a1ce.js"><link rel="prefetch" href="/encode/assets/js/7.bb6d5db4.js"><link rel="prefetch" href="/encode/assets/js/70.f1b3b362.js"><link rel="prefetch" href="/encode/assets/js/71.08ec7765.js"><link rel="prefetch" href="/encode/assets/js/72.6b8c4b03.js"><link rel="prefetch" href="/encode/assets/js/73.410475d4.js"><link rel="prefetch" href="/encode/assets/js/74.954039d0.js"><link rel="prefetch" href="/encode/assets/js/75.98ca0c21.js"><link rel="prefetch" href="/encode/assets/js/76.620d2a99.js"><link rel="prefetch" href="/encode/assets/js/77.77745ca5.js"><link rel="prefetch" href="/encode/assets/js/78.d2559f9e.js"><link rel="prefetch" href="/encode/assets/js/79.390575f5.js"><link rel="prefetch" href="/encode/assets/js/80.f4a44cdf.js"><link rel="prefetch" href="/encode/assets/js/81.91b6b482.js"><link rel="prefetch" href="/encode/assets/js/82.c14a352d.js"><link rel="prefetch" href="/encode/assets/js/83.8a9a8155.js"><link rel="prefetch" href="/encode/assets/js/84.727b2420.js"><link rel="prefetch" href="/encode/assets/js/85.5b66b7d4.js"><link rel="prefetch" href="/encode/assets/js/86.7f1b8ba3.js"><link rel="prefetch" href="/encode/assets/js/87.b5df7089.js"><link rel="prefetch" href="/encode/assets/js/88.862df3d3.js"><link rel="prefetch" href="/encode/assets/js/89.2122e49f.js"><link rel="prefetch" href="/encode/assets/js/90.d1e15264.js"><link rel="prefetch" href="/encode/assets/js/91.fb5441d9.js"><link rel="prefetch" href="/encode/assets/js/92.607c6e24.js"><link rel="prefetch" href="/encode/assets/js/93.b1c30ad3.js"><link rel="prefetch" href="/encode/assets/js/94.2956edaf.js"><link rel="prefetch" href="/encode/assets/js/95.11998ca3.js"><link rel="prefetch" href="/encode/assets/js/96.9cd4ede9.js"><link rel="prefetch" href="/encode/assets/js/98.2a55e71b.js"><link rel="prefetch" href="/encode/assets/js/99.8651d8fa.js"><link rel="prefetch" href="/encode/assets/js/vendors~docsearch.5da1c945.js">
+    <link rel="stylesheet" href="/encode/assets/css/0.styles.66d56a42.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/encode/" class="home-link router-link-active"><img src="/encode/img/logo.jpeg" alt="bootstet" class="logo"> <span class="site-name can-hide">bootstet</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/encode/index.html" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编码规范" class="dropdown-title"><span class="title">编码规范</span> <span class="arrow down"></span></button> <button type="button" aria-label="编码规范" class="mobile-dropdown-title"><span class="title">编码规范</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/coding/html.html" class="nav-link">
+  HTML 编码规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/coding/css.html" class="nav-link">
+  CSS 编码规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/coding/javascript.html" class="nav-link">
+  JavaScript 编码规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/coding/node.html" class="nav-link">
+  Node 编码规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/coding/typescript.html" class="nav-link">
+  Typescript 编码规范
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工程规范" class="dropdown-title"><span class="title">工程规范</span> <span class="arrow down"></span></button> <button type="button" aria-label="工程规范" class="mobile-dropdown-title"><span class="title">工程规范</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/engineering/git.html" class="nav-link">
+  Git 规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/engineering/doc.html" class="nav-link">
+  文档规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/engineering/changelog.html" class="nav-link">
+  CHANGELOG 规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/engineering/monorepo.html" class="nav-link">
+  Monorepo
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="NPM包" class="dropdown-title"><span class="title">NPM包</span> <span class="arrow down"></span></button> <button type="button" aria-label="NPM包" class="mobile-dropdown-title"><span class="title">NPM包</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/npm/eslint.html" class="nav-link">
+  eslint-config-encode
+</a></li><li class="dropdown-item"><!----> <a href="/encode/npm/stylelint.html" class="nav-link">
+  stylelint-config-encode
+</a></li><li class="dropdown-item"><!----> <a href="/encode/npm/commitlint.html" class="nav-link">
+  commitlint-config-encode
+</a></li><li class="dropdown-item"><!----> <a href="/encode/npm/markdownlint.html" class="nav-link">
+  markdownlint-config-encode
+</a></li><li class="dropdown-item"><!----> <a href="/encode/npm/eslint-plugin.html" class="nav-link">
+  eslint-plugin-encode
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="脚手架" class="dropdown-title"><span class="title">脚手架</span> <span class="arrow down"></span></button> <button type="button" aria-label="脚手架" class="mobile-dropdown-title"><span class="title">脚手架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/cli/encode-fe-lint.html" class="nav-link">
+  bootstet-fe-lint
+</a></li></ul></div></div><div class="nav-item"><a href="/encode/components/perf/web-vitals.html" class="nav-link">
+  性能
+</a></div><div class="nav-item"><a href="/encode/components/observability/sentry.html" class="nav-link">
+  稳定性
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="安全" class="dropdown-title"><span class="title">安全</span> <span class="arrow down"></span></button> <button type="button" aria-label="安全" class="mobile-dropdown-title"><span class="title">安全</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/components/security/xss-csp.html" class="nav-link">
+  XSS 与 CSP
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/security/csrf-auth.html" class="nav-link">
+  CSRF 与鉴权
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="面试OS" class="dropdown-title"><span class="title">面试OS</span> <span class="arrow down"></span></button> <button type="button" aria-label="面试OS" class="mobile-dropdown-title"><span class="title">面试OS</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/interview/index.html" class="nav-link">
+  总览
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/one-pagers/vue3.html" class="nav-link">
+  一页纸：Vue3
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/one-pagers/RESUME.html" class="nav-link">
+  简历
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/one-pagers/RESUME1.html" class="nav-link">
+  简历1
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/battle-cards/perf-miniprogram.html" class="nav-link">
+  战役卡：小程序提速
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/cards/50-questions.html" class="nav-link">
+  高频50题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="study" class="dropdown-title"><span class="title">study</span> <span class="arrow down"></span></button> <button type="button" aria-label="study" class="mobile-dropdown-title"><span class="title">study</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/components/page/funPro.html" class="nav-link">
+  JavaScript深度剖析
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/ts/typescript.html" class="nav-link">
+  typeScript
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/question/design.html" class="nav-link">
+  设计模式
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/engineering/" class="nav-link">
+  前端工程化
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/vue/vueBase.html" class="nav-link">
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/react/basics1.html" class="nav-link">
+  react
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/node/basic.html" class="nav-link">
+  node
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/question/proAndAsync.html" class="nav-link">
+  面试题
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/browser/browser.html" class="nav-link">
+  面试题整理
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/article/bokeinit.html" class="nav-link">
+  常见问题记录
+</a></li></ul></div></div> <a href="https://github.com/bootstet/encode" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/encode/index.html" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编码规范" class="dropdown-title"><span class="title">编码规范</span> <span class="arrow down"></span></button> <button type="button" aria-label="编码规范" class="mobile-dropdown-title"><span class="title">编码规范</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/coding/html.html" class="nav-link">
+  HTML 编码规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/coding/css.html" class="nav-link">
+  CSS 编码规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/coding/javascript.html" class="nav-link">
+  JavaScript 编码规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/coding/node.html" class="nav-link">
+  Node 编码规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/coding/typescript.html" class="nav-link">
+  Typescript 编码规范
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工程规范" class="dropdown-title"><span class="title">工程规范</span> <span class="arrow down"></span></button> <button type="button" aria-label="工程规范" class="mobile-dropdown-title"><span class="title">工程规范</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/engineering/git.html" class="nav-link">
+  Git 规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/engineering/doc.html" class="nav-link">
+  文档规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/engineering/changelog.html" class="nav-link">
+  CHANGELOG 规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/engineering/monorepo.html" class="nav-link">
+  Monorepo
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="NPM包" class="dropdown-title"><span class="title">NPM包</span> <span class="arrow down"></span></button> <button type="button" aria-label="NPM包" class="mobile-dropdown-title"><span class="title">NPM包</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/npm/eslint.html" class="nav-link">
+  eslint-config-encode
+</a></li><li class="dropdown-item"><!----> <a href="/encode/npm/stylelint.html" class="nav-link">
+  stylelint-config-encode
+</a></li><li class="dropdown-item"><!----> <a href="/encode/npm/commitlint.html" class="nav-link">
+  commitlint-config-encode
+</a></li><li class="dropdown-item"><!----> <a href="/encode/npm/markdownlint.html" class="nav-link">
+  markdownlint-config-encode
+</a></li><li class="dropdown-item"><!----> <a href="/encode/npm/eslint-plugin.html" class="nav-link">
+  eslint-plugin-encode
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="脚手架" class="dropdown-title"><span class="title">脚手架</span> <span class="arrow down"></span></button> <button type="button" aria-label="脚手架" class="mobile-dropdown-title"><span class="title">脚手架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/cli/encode-fe-lint.html" class="nav-link">
+  bootstet-fe-lint
+</a></li></ul></div></div><div class="nav-item"><a href="/encode/components/perf/web-vitals.html" class="nav-link">
+  性能
+</a></div><div class="nav-item"><a href="/encode/components/observability/sentry.html" class="nav-link">
+  稳定性
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="安全" class="dropdown-title"><span class="title">安全</span> <span class="arrow down"></span></button> <button type="button" aria-label="安全" class="mobile-dropdown-title"><span class="title">安全</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/components/security/xss-csp.html" class="nav-link">
+  XSS 与 CSP
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/security/csrf-auth.html" class="nav-link">
+  CSRF 与鉴权
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="面试OS" class="dropdown-title"><span class="title">面试OS</span> <span class="arrow down"></span></button> <button type="button" aria-label="面试OS" class="mobile-dropdown-title"><span class="title">面试OS</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/interview/index.html" class="nav-link">
+  总览
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/one-pagers/vue3.html" class="nav-link">
+  一页纸：Vue3
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/one-pagers/RESUME.html" class="nav-link">
+  简历
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/one-pagers/RESUME1.html" class="nav-link">
+  简历1
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/battle-cards/perf-miniprogram.html" class="nav-link">
+  战役卡：小程序提速
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/cards/50-questions.html" class="nav-link">
+  高频50题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="study" class="dropdown-title"><span class="title">study</span> <span class="arrow down"></span></button> <button type="button" aria-label="study" class="mobile-dropdown-title"><span class="title">study</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/components/page/funPro.html" class="nav-link">
+  JavaScript深度剖析
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/ts/typescript.html" class="nav-link">
+  typeScript
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/question/design.html" class="nav-link">
+  设计模式
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/engineering/" class="nav-link">
+  前端工程化
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/vue/vueBase.html" class="nav-link">
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/react/basics1.html" class="nav-link">
+  react
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/node/basic.html" class="nav-link">
+  node
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/question/proAndAsync.html" class="nav-link">
+  面试题
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/browser/browser.html" class="nav-link">
+  面试题整理
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/article/bokeinit.html" class="nav-link">
+  常见问题记录
+</a></li></ul></div></div> <a href="https://github.com/bootstet/encode" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>JavaScript深度剖析</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>typeScript</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>设计模式</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端工程化</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>vue</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>vue3</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>react</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>node</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/encode/components/question/" class="sidebar-heading clickable router-link-active open"><span>面试题</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/encode/components/question/proAndAsync.html" class="sidebar-link">异步|函数编程</a></li><li><a href="/encode/components/question/tsAndEs6.html" class="sidebar-link">Es6|ts</a></li><li><a href="/encode/components/question/assign.html" class="sidebar-link">理解赋值表达式</a></li><li><a href="/encode/components/question/engineering.html" class="sidebar-link">工程化及gulp创建项目</a></li><li><a href="/encode/components/question/webpack.html" class="sidebar-link">webpack</a></li><li><a href="/encode/components/question/vueVirtualdom.html" class="sidebar-link">vue虚拟dom</a></li><li><a href="/encode/components/question/node.html" aria-current="page" class="active sidebar-link">nodejs高级编程</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/encode/components/question/node.html#简答题" class="sidebar-link">简答题</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/encode/components/question/node.html#_1-简述-node-js-的特点以及适用的场景。" class="sidebar-link">1.简述 Node.js 的特点以及适用的场景。</a></li><li class="sidebar-sub-header"><a href="/encode/components/question/node.html#_2-简述-buffer-的使用。包括多种创建方式。实例方法-静态方法。" class="sidebar-link">2.简述 Buffer 的使用。包括多种创建方式。实例方法，静态方法。</a></li><li class="sidebar-sub-header"><a href="/encode/components/question/node.html#_3-写出5个以上文件操作的api-并且用文字说明其功能。" class="sidebar-link">3.写出5个以上文件操作的API，并且用文字说明其功能。</a></li><li class="sidebar-sub-header"><a href="/encode/components/question/node.html#_4-简述使用流操作的优势-以及node中流的分类。" class="sidebar-link">4.简述使用流操作的优势，以及Node中流的分类。</a></li><li class="sidebar-sub-header"><a href="/encode/components/question/node.html#_5-在数据封装与解封装过程中-针对应用层、传输层、网络层、数据链路层、物理层5层分别做了什么事情" class="sidebar-link">5.在数据封装与解封装过程中，针对应用层、传输层、网络层、数据链路层、物理层5层分别做了什么事情？</a></li></ul></li><li class="sidebar-sub-header"><a href="/encode/components/question/node.html#代码题" class="sidebar-link">代码题</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/encode/components/question/node.html#_1-统计指定目录中文件总大小。要考虑目录中还有子目录的情况。可以同步编码-异步更好。" class="sidebar-link">1.统计指定目录中文件总大小。要考虑目录中还有子目录的情况。可以同步编码，异步更好。</a></li><li class="sidebar-sub-header"><a href="/encode/components/question/node.html#_2-编写单向链表类并且实现队列的入列出列操作。" class="sidebar-link">2.编写单向链表类并且实现队列的入列出列操作。</a></li><li class="sidebar-sub-header"><a href="/encode/components/question/node.html#_3-基于node写出一静态服务器。接受请求并且相应特定目录-服务器目录-中的html、css、js、图片等资源。" class="sidebar-link">3.基于Node写出一静态服务器。接受请求并且相应特定目录（服务器目录）中的html、css、js、图片等资源。</a></li></ul></li></ul></li><li><a href="/encode/components/browser/reviewQuestion.html" class="sidebar-link">2021面试题</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>安全</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>网络与缓存</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>小程序</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>面试题整理</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>常见问题记录</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>感悟</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>待定...</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id=""><a href="#" class="header-anchor">#</a></h3> <p>Node.js 高级编程（核心模块、模块加载机制） 作业地址：</p> <h3 id="-2"><a href="#-2" class="header-anchor">#</a></h3> <p>请完成下面几道简答题。</p> <h2 id="简答题"><a href="#简答题" class="header-anchor">#</a> 简答题</h2> <h3 id="_1-简述-node-js-的特点以及适用的场景。"><a href="#_1-简述-node-js-的特点以及适用的场景。" class="header-anchor">#</a> 1.简述 Node.js 的特点以及适用的场景。</h3> <ul><li>特点：
+<ul><li>Reactor模式，单线程完成多线程工作（单线程）</li> <li>Reactor模式下实现异步IO、事件驱动（事件驱动架构）</li> <li>Nodejs适用IO密集型高并发并发请求 （异步IO）</li></ul></li> <li>适用场景：
+<ul><li>IO 密集型高并发请求 （Node.js作为中间层）提高吞吐量，很方便的处理数据</li> <li>操作数据库提供 API 服务</li> <li>实时聊天应用程序</li></ul></li> <li>作用：
+<ul><li>实现轻量级、高性能可扩展的Web服务</li> <li>前后端JavaScript同构开发</li> <li>实现便捷高效的前端工程化</li></ul></li></ul> <h3 id="_2-简述-buffer-的使用。包括多种创建方式。实例方法-静态方法。"><a href="#_2-简述-buffer-的使用。包括多种创建方式。实例方法-静态方法。" class="header-anchor">#</a> 2.简述 Buffer 的使用。包括多种创建方式。实例方法，静态方法。</h3> <ul><li>创建Buffer实例
+<ul><li>alloc: 创建指定字节大小的buffer</li> <li>allocUnsafe：创建指定管大小的Buffer</li> <li>from：接受数据，创建buffer</li></ul></li> <li>Buffer实例方法
+<ul><li>fill： 使用数据填充 buffer</li></ul> <div class="language-js extra-class"><pre class="language-js"><code>  <span class="token keyword">let</span> buf <span class="token operator">=</span> Buffer<span class="token punctuation">.</span><span class="token function">alloc</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span>
+  buf<span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">)</span>
+</code></pre></div><ul><li>write: 向buffer中写入数据</li> <li>toString: 从buffer中提取数据</li> <li>slice： 截取buffer</li> <li>indexOf： 在buffer中查找数据</li> <li>copy：拷贝buffer中的数据</li></ul></li> <li>Buffer 静态方法
+<ul><li>concat: 将多个buffer拼接成一个新的buffer</li> <li>isBuffer： 判断当前诗句是否为 buffer</li></ul></li></ul> <h3 id="_3-写出5个以上文件操作的api-并且用文字说明其功能。"><a href="#_3-写出5个以上文件操作的api-并且用文字说明其功能。" class="header-anchor">#</a> 3.写出5个以上文件操作的API，并且用文字说明其功能。</h3> <ul><li>readFile: 从指定文件中读取数据</li> <li>writeFile： 向指定文件中写入数据</li> <li>appendFile：追加的方式想指定的文件中写入数据</li> <li>copyFile： 将某个文件中的数据拷贝至另一文件</li> <li>watchFile： 对指定文件进行监控</li></ul> <h3 id="_4-简述使用流操作的优势-以及node中流的分类。"><a href="#_4-简述使用流操作的优势-以及node中流的分类。" class="header-anchor">#</a> 4.简述使用流操作的优势，以及Node中流的分类。</h3> <ul><li>我们在读取资源时，采用readFile的方式的时候开销较大，因此采用流操作的优势有：
+<ul><li>时间效率： 流的分段处理可以同事操作多个数据chunk</li> <li>空间效率： 同一时间流无须占据大内存空间</li> <li>使用方便： 流配合管理，扩展程序变得简单</li></ul></li> <li>流的分类：
+<ul><li>Readble：可读流，能够实现数据的读取</li> <li>Writeable： 可写流，能够实现数据的写操作</li> <li>Duplex：双工流，即可读又可写</li> <li>Tranform： 转换流，可读可写，还能实现数据转换</li></ul></li></ul> <h3 id="_5-在数据封装与解封装过程中-针对应用层、传输层、网络层、数据链路层、物理层5层分别做了什么事情"><a href="#_5-在数据封装与解封装过程中-针对应用层、传输层、网络层、数据链路层、物理层5层分别做了什么事情" class="header-anchor">#</a> 5.在数据封装与解封装过程中，针对应用层、传输层、网络层、数据链路层、物理层5层分别做了什么事情？</h3> <ul><li>数据封装
+<ul><li>应用层： 在应用层，产出需要运输的数据
+data</li> <li>传输层： 端口的作用用于在主机上确定一个主机的进程，数据在这层会被包裹上目标应用端口和运用在当前主机上的源端口，之后数据在传向网络层<br>
+目标端口 + 源端口 + data</li> <li>网络层： 因为我们的主机都处于不同的网络里，所以我们需要通过ip协议来确定目标目标主机所存在的网络，因此数据在这层上会被包裹上目标主机的ip地址和源ip地址。
+现在可以确定某一个网络，并不蹦确定在这个网络里的那台机器使我们需要的
+目标ip + 源ip + 目标端口 + 源端口 + data</li> <li>数据链路层： 通过mac地址完成寻址操作，所以在这层上数据会被包裹上目标主机的mac地址与当前主机的mac地址，至此一个完整信息的数据就封装OK了
+目标Mac + 源mac + 目标ip + 源ip + 目标端口 + 源端口 + data</li> <li>物理层：数据最终会转换二进制数据，而网线是不能识别二进制的，经过网卡调试成高低电压。</li></ul></li> <li>解封装
+<ul><li>物理层： 有了以上这些数据以后，通过路由器的网络分配和传输截止的运输，最终到目标主机的网卡
+这个时候目标主机网卡会进行数据解调，将电压先变为二进制，然后在向上层传递至链路层</li> <li>数据链路层：这个时候会分析一下目标的mac地址是不是当前主机的mac地址，如果是就继续向上传递至网络层</li> <li>网络层： 在这一层看目标ip是否是当前主机的ip，如果是继续向上传递至传输层</li> <li>传输层： 这个时候在确定目标端口是否是自己，如果是再次拆解数据，向上传递至应用层</li> <li>应用层： 至此，当前网络的一个目标的一个应用就已经拿到了由另外一个网络的一台主机的应用所传递过来的数据。</li></ul></li></ul> <h2 id="代码题"><a href="#代码题" class="header-anchor">#</a> 代码题</h2> <h3 id="_1-统计指定目录中文件总大小。要考虑目录中还有子目录的情况。可以同步编码-异步更好。"><a href="#_1-统计指定目录中文件总大小。要考虑目录中还有子目录的情况。可以同步编码-异步更好。" class="header-anchor">#</a> 1.统计指定目录中文件总大小。要考虑目录中还有子目录的情况。可以同步编码，异步更好。</h3> <p>见code目录中 01-filesize中代码</p> <div class="language-js extra-class"><pre class="language-js"><code>  <span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">function</span> <span class="token function">readFile</span><span class="token punctuation">(</span><span class="token parameter">url</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    fs<span class="token punctuation">.</span><span class="token function">access</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 先判断目录是否具有权限</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token keyword">return</span> console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+      fs<span class="token punctuation">.</span><span class="token function">stat</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> statObj</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>statObj<span class="token punctuation">.</span>size<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">readFile</span><span class="token punctuation">(</span><span class="token string">'b'</span><span class="token punctuation">)</span>
+</code></pre></div><h3 id="_2-编写单向链表类并且实现队列的入列出列操作。"><a href="#_2-编写单向链表类并且实现队列的入列出列操作。" class="header-anchor">#</a> 2.编写单向链表类并且实现队列的入列出列操作。</h3> <p>代码如下也可在code 目录下02-oneway-link中查看</p> <div class="language-js extra-class"><pre class="language-js"><code>  <span class="token comment">/**
+   * 链表结构  用来存放数据
+   * 01 node + head + null
+   * 02 head --&gt; null
+   * 03 size
+   * 04 next element
+   * 
+   * 05 增加 删除 修改 查询 清空节点
+   */</span>
+
+  <span class="token keyword">class</span> <span class="token class-name">Node</span> <span class="token punctuation">{</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">element<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>element <span class="token operator">=</span> element
+      <span class="token keyword">this</span><span class="token punctuation">.</span>next <span class="token operator">=</span> next
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">class</span> <span class="token class-name">LinkedList</span> <span class="token punctuation">{</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">head<span class="token punctuation">,</span> size</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>head <span class="token operator">=</span> <span class="token keyword">null</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>size <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 私有方法</span>
+    <span class="token function">_getNode</span><span class="token punctuation">(</span><span class="token parameter">index</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>index <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">||</span> index <span class="token operator">&gt;=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'越界了'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">let</span> currentNode <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>head
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span>  index<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        currentNode <span class="token operator">=</span> currentNode<span class="token punctuation">.</span>next
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> currentNode
+    <span class="token punctuation">}</span>
+    <span class="token function">add</span><span class="token punctuation">(</span><span class="token parameter">index<span class="token punctuation">,</span> element</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>arguments<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        element <span class="token operator">=</span> index
+        index <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>size
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">||</span> index <span class="token operator">&gt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'cross the border'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> head <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>head <span class="token comment">// 保存原有head的指向</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>head <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>element<span class="token punctuation">,</span> head<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> prevNode <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_getNode</span><span class="token punctuation">(</span>index <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        prevNode<span class="token punctuation">.</span>next <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>element<span class="token punctuation">,</span> prevNode<span class="token punctuation">.</span>next<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>size<span class="token operator">++</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 删除</span>
+    <span class="token function">remove</span><span class="token punctuation">(</span><span class="token parameter">index</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> rmNode <span class="token operator">=</span> <span class="token keyword">null</span>
+      <span class="token comment">// 判断删除的是开头</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        rmNode <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>head
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>rmNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token keyword">undefined</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>head <span class="token operator">=</span> rmNode<span class="token punctuation">.</span>next
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> prevNode <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_getNode</span><span class="token punctuation">(</span>index <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        rmNode <span class="token operator">=</span> prevNode<span class="token punctuation">.</span>next
+        prevNode<span class="token punctuation">.</span>next <span class="token operator">=</span> rmNode<span class="token punctuation">.</span>next
+      <span class="token punctuation">}</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>size<span class="token operator">--</span>
+      <span class="token keyword">return</span> rmNode
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 设置</span>
+    <span class="token function">set</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> element<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> node <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_getNode</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span>
+      node<span class="token punctuation">.</span>element <span class="token operator">=</span> element
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 查询</span>
+    <span class="token function">get</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_getNode</span><span class="token punctuation">(</span>index <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 清空</span>
+    <span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>head <span class="token operator">=</span> <span class="token keyword">null</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>size <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+
+  <span class="token keyword">class</span> <span class="token class-name">Queue</span><span class="token punctuation">{</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>LinkedList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedList</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 列入</span>
+    <span class="token function">enQueue</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>LinkedList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 列出</span>
+    <span class="token function">deQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>LinkedList<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">const</span> q <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Queue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  q<span class="token punctuation">.</span><span class="token function">enQueue</span><span class="token punctuation">(</span><span class="token string">'node1'</span><span class="token punctuation">)</span>
+  q<span class="token punctuation">.</span><span class="token function">enQueue</span><span class="token punctuation">(</span><span class="token string">'node2'</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">let</span> a <span class="token operator">=</span> q<span class="token punctuation">.</span><span class="token function">deQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  a <span class="token operator">=</span> q<span class="token punctuation">.</span><span class="token function">deQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  a <span class="token operator">=</span> q<span class="token punctuation">.</span><span class="token function">deQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+</code></pre></div><h3 id="_3-基于node写出一静态服务器。接受请求并且相应特定目录-服务器目录-中的html、css、js、图片等资源。"><a href="#_3-基于node写出一静态服务器。接受请求并且相应特定目录-服务器目录-中的html、css、js、图片等资源。" class="header-anchor">#</a> 3.基于Node写出一静态服务器。接受请求并且相应特定目录（服务器目录）中的html、css、js、图片等资源。</h3> <ul><li><p>作业代码地址 <a href="https://github.com/bootstet/cyzserver" target="_blank" rel="noopener noreferrer">代码见github仓库<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></li> <li><p>cyzserver已在npm发布 <a href="https://www.npmjs.com/package/cyzserver" target="_blank" rel="noopener noreferrer">npm地址<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/encode/components/question/vueVirtualdom.html" class="prev">
+        vue虚拟dom
+      </a></span> <span class="next"><a href="/encode/components/browser/reviewQuestion.html">
+        2021面试题
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/encode/assets/js/app.ec29c162.js" defer></script><script src="/encode/assets/js/2.5e8d92a0.js" defer></script><script src="/encode/assets/js/1.d8615a3a.js" defer></script><script src="/encode/assets/js/97.30d716a7.js" defer></script>
+  </body>
+</html>

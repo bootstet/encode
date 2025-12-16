@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>JavaScript深入之继承的多种方式和优缺点 | bootstet</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/encode/img/logo.jpeg">
+    <meta name="description" content="前端编码规范工程化">
+    <meta name="keywords" content="前端编码规范工程化">
+    
+    <link rel="preload" href="/encode/assets/css/0.styles.66d56a42.css" as="style"><link rel="preload" href="/encode/assets/js/app.ec29c162.js" as="script"><link rel="preload" href="/encode/assets/js/2.5e8d92a0.js" as="script"><link rel="preload" href="/encode/assets/js/1.d8615a3a.js" as="script"><link rel="preload" href="/encode/assets/js/64.9d7796be.js" as="script"><link rel="prefetch" href="/encode/assets/js/10.b7753eb9.js"><link rel="prefetch" href="/encode/assets/js/100.a164d413.js"><link rel="prefetch" href="/encode/assets/js/101.1bf95e44.js"><link rel="prefetch" href="/encode/assets/js/102.c83f9525.js"><link rel="prefetch" href="/encode/assets/js/103.9c01454e.js"><link rel="prefetch" href="/encode/assets/js/104.c2b4bc3e.js"><link rel="prefetch" href="/encode/assets/js/105.0ff6616b.js"><link rel="prefetch" href="/encode/assets/js/106.db5889e6.js"><link rel="prefetch" href="/encode/assets/js/107.079cb524.js"><link rel="prefetch" href="/encode/assets/js/108.de4f927e.js"><link rel="prefetch" href="/encode/assets/js/109.7f5077ba.js"><link rel="prefetch" href="/encode/assets/js/11.3c41a4f3.js"><link rel="prefetch" href="/encode/assets/js/110.52062201.js"><link rel="prefetch" href="/encode/assets/js/111.9145eb4a.js"><link rel="prefetch" href="/encode/assets/js/112.c7bb3f2b.js"><link rel="prefetch" href="/encode/assets/js/113.18b3a51d.js"><link rel="prefetch" href="/encode/assets/js/114.b6e5a738.js"><link rel="prefetch" href="/encode/assets/js/115.c5cc718c.js"><link rel="prefetch" href="/encode/assets/js/116.e66a98ba.js"><link rel="prefetch" href="/encode/assets/js/117.67cb7b71.js"><link rel="prefetch" href="/encode/assets/js/118.eed69e4c.js"><link rel="prefetch" href="/encode/assets/js/119.d4ab01cb.js"><link rel="prefetch" href="/encode/assets/js/12.a9b5f75f.js"><link rel="prefetch" href="/encode/assets/js/120.19d237e3.js"><link rel="prefetch" href="/encode/assets/js/121.bf817c87.js"><link rel="prefetch" href="/encode/assets/js/122.5ff06918.js"><link rel="prefetch" href="/encode/assets/js/123.d1f8c7f1.js"><link rel="prefetch" href="/encode/assets/js/124.37091ecd.js"><link rel="prefetch" href="/encode/assets/js/125.6e225ed7.js"><link rel="prefetch" href="/encode/assets/js/126.f2d1b636.js"><link rel="prefetch" href="/encode/assets/js/127.ffc1eedb.js"><link rel="prefetch" href="/encode/assets/js/128.0622721f.js"><link rel="prefetch" href="/encode/assets/js/129.10b8938a.js"><link rel="prefetch" href="/encode/assets/js/13.2c49ab38.js"><link rel="prefetch" href="/encode/assets/js/130.ff5d6e03.js"><link rel="prefetch" href="/encode/assets/js/131.382bea10.js"><link rel="prefetch" href="/encode/assets/js/132.8fd176bd.js"><link rel="prefetch" href="/encode/assets/js/133.6dd6dcc0.js"><link rel="prefetch" href="/encode/assets/js/134.e9ca4f81.js"><link rel="prefetch" href="/encode/assets/js/135.b7ab6d0e.js"><link rel="prefetch" href="/encode/assets/js/136.4fa1c9a3.js"><link rel="prefetch" href="/encode/assets/js/137.90c89811.js"><link rel="prefetch" href="/encode/assets/js/138.dc0b93c7.js"><link rel="prefetch" href="/encode/assets/js/139.d41c5577.js"><link rel="prefetch" href="/encode/assets/js/14.72f22f7c.js"><link rel="prefetch" href="/encode/assets/js/140.bdae6738.js"><link rel="prefetch" href="/encode/assets/js/141.b2342d82.js"><link rel="prefetch" href="/encode/assets/js/142.b18d9372.js"><link rel="prefetch" href="/encode/assets/js/143.66c73c13.js"><link rel="prefetch" href="/encode/assets/js/144.52d66c89.js"><link rel="prefetch" href="/encode/assets/js/145.c8b54606.js"><link rel="prefetch" href="/encode/assets/js/146.bc4b632a.js"><link rel="prefetch" href="/encode/assets/js/147.c0ea6ba7.js"><link rel="prefetch" href="/encode/assets/js/148.2fed6ee4.js"><link rel="prefetch" href="/encode/assets/js/149.fe92b054.js"><link rel="prefetch" href="/encode/assets/js/15.f6ccec65.js"><link rel="prefetch" href="/encode/assets/js/150.3a26fc62.js"><link rel="prefetch" href="/encode/assets/js/151.a2c7daeb.js"><link rel="prefetch" href="/encode/assets/js/152.afc5f723.js"><link rel="prefetch" href="/encode/assets/js/153.e46b7d12.js"><link rel="prefetch" href="/encode/assets/js/154.8761ccb9.js"><link rel="prefetch" href="/encode/assets/js/155.74890302.js"><link rel="prefetch" href="/encode/assets/js/156.ebb742af.js"><link rel="prefetch" href="/encode/assets/js/157.363d1278.js"><link rel="prefetch" href="/encode/assets/js/158.58a32375.js"><link rel="prefetch" href="/encode/assets/js/159.0fa8ffc4.js"><link rel="prefetch" href="/encode/assets/js/16.644fe2ba.js"><link rel="prefetch" href="/encode/assets/js/160.0f450f78.js"><link rel="prefetch" href="/encode/assets/js/161.f587b7aa.js"><link rel="prefetch" href="/encode/assets/js/162.71c98cf6.js"><link rel="prefetch" href="/encode/assets/js/163.64217615.js"><link rel="prefetch" href="/encode/assets/js/164.efe2732e.js"><link rel="prefetch" href="/encode/assets/js/165.443cd8d2.js"><link rel="prefetch" href="/encode/assets/js/166.47c8cb3e.js"><link rel="prefetch" href="/encode/assets/js/167.32fd6c2f.js"><link rel="prefetch" href="/encode/assets/js/168.cc306dd7.js"><link rel="prefetch" href="/encode/assets/js/169.4893e4c8.js"><link rel="prefetch" href="/encode/assets/js/17.3b4d04ba.js"><link rel="prefetch" href="/encode/assets/js/170.4bd9e330.js"><link rel="prefetch" href="/encode/assets/js/171.12ba9be3.js"><link rel="prefetch" href="/encode/assets/js/172.2d5dae21.js"><link rel="prefetch" href="/encode/assets/js/173.c29bf625.js"><link rel="prefetch" href="/encode/assets/js/174.66fd5411.js"><link rel="prefetch" href="/encode/assets/js/175.ba028620.js"><link rel="prefetch" href="/encode/assets/js/176.96ef9b75.js"><link rel="prefetch" href="/encode/assets/js/177.9bd5f686.js"><link rel="prefetch" href="/encode/assets/js/178.efb2ac5e.js"><link rel="prefetch" href="/encode/assets/js/179.ab921d6a.js"><link rel="prefetch" href="/encode/assets/js/18.762d806c.js"><link rel="prefetch" href="/encode/assets/js/180.842d88e4.js"><link rel="prefetch" href="/encode/assets/js/181.0288279f.js"><link rel="prefetch" href="/encode/assets/js/182.470f9ef1.js"><link rel="prefetch" href="/encode/assets/js/183.9b56fff2.js"><link rel="prefetch" href="/encode/assets/js/184.8131a112.js"><link rel="prefetch" href="/encode/assets/js/185.2e365c86.js"><link rel="prefetch" href="/encode/assets/js/186.19678c53.js"><link rel="prefetch" href="/encode/assets/js/187.9ddde7fc.js"><link rel="prefetch" href="/encode/assets/js/188.964db173.js"><link rel="prefetch" href="/encode/assets/js/189.468cf1b8.js"><link rel="prefetch" href="/encode/assets/js/19.c5695532.js"><link rel="prefetch" href="/encode/assets/js/190.0486499d.js"><link rel="prefetch" href="/encode/assets/js/191.263096f8.js"><link rel="prefetch" href="/encode/assets/js/192.1f02538e.js"><link rel="prefetch" href="/encode/assets/js/193.f9f8345d.js"><link rel="prefetch" href="/encode/assets/js/194.37548087.js"><link rel="prefetch" href="/encode/assets/js/195.839f1b20.js"><link rel="prefetch" href="/encode/assets/js/196.22e242d9.js"><link rel="prefetch" href="/encode/assets/js/197.00c0404f.js"><link rel="prefetch" href="/encode/assets/js/198.cc29c8ee.js"><link rel="prefetch" href="/encode/assets/js/199.c239a206.js"><link rel="prefetch" href="/encode/assets/js/20.66b9611c.js"><link rel="prefetch" href="/encode/assets/js/200.bef137ef.js"><link rel="prefetch" href="/encode/assets/js/201.86c9f523.js"><link rel="prefetch" href="/encode/assets/js/202.2f0c020f.js"><link rel="prefetch" href="/encode/assets/js/203.2267dbaf.js"><link rel="prefetch" href="/encode/assets/js/204.276c1b61.js"><link rel="prefetch" href="/encode/assets/js/205.a35de7d5.js"><link rel="prefetch" href="/encode/assets/js/206.3afe4f82.js"><link rel="prefetch" href="/encode/assets/js/207.f72d8502.js"><link rel="prefetch" href="/encode/assets/js/208.0705b595.js"><link rel="prefetch" href="/encode/assets/js/209.2a47da4d.js"><link rel="prefetch" href="/encode/assets/js/21.b3177842.js"><link rel="prefetch" href="/encode/assets/js/210.7a9f5625.js"><link rel="prefetch" href="/encode/assets/js/22.8d9e2fa3.js"><link rel="prefetch" href="/encode/assets/js/23.c6de4485.js"><link rel="prefetch" href="/encode/assets/js/24.9278000f.js"><link rel="prefetch" href="/encode/assets/js/25.673844e9.js"><link rel="prefetch" href="/encode/assets/js/26.9abea99c.js"><link rel="prefetch" href="/encode/assets/js/27.65abdaf1.js"><link rel="prefetch" href="/encode/assets/js/28.599cf317.js"><link rel="prefetch" href="/encode/assets/js/29.5f936111.js"><link rel="prefetch" href="/encode/assets/js/3.a7b0bd92.js"><link rel="prefetch" href="/encode/assets/js/30.bad85012.js"><link rel="prefetch" href="/encode/assets/js/31.0988e131.js"><link rel="prefetch" href="/encode/assets/js/32.09be3268.js"><link rel="prefetch" href="/encode/assets/js/33.153d7f4a.js"><link rel="prefetch" href="/encode/assets/js/34.6f0eccc0.js"><link rel="prefetch" href="/encode/assets/js/35.51a9e199.js"><link rel="prefetch" href="/encode/assets/js/36.4f089c50.js"><link rel="prefetch" href="/encode/assets/js/37.d84c4270.js"><link rel="prefetch" href="/encode/assets/js/38.9a89c937.js"><link rel="prefetch" href="/encode/assets/js/39.89b7b97b.js"><link rel="prefetch" href="/encode/assets/js/4.953a3f9d.js"><link rel="prefetch" href="/encode/assets/js/40.ddefbfce.js"><link rel="prefetch" href="/encode/assets/js/41.0e10a8ee.js"><link rel="prefetch" href="/encode/assets/js/42.907bb674.js"><link rel="prefetch" href="/encode/assets/js/43.777877d4.js"><link rel="prefetch" href="/encode/assets/js/44.3bba0681.js"><link rel="prefetch" href="/encode/assets/js/45.b72fcf0d.js"><link rel="prefetch" href="/encode/assets/js/46.a9570dff.js"><link rel="prefetch" href="/encode/assets/js/47.3c678213.js"><link rel="prefetch" href="/encode/assets/js/48.7f8e4762.js"><link rel="prefetch" href="/encode/assets/js/49.8d2fd5f8.js"><link rel="prefetch" href="/encode/assets/js/5.b7331e62.js"><link rel="prefetch" href="/encode/assets/js/50.478f11ce.js"><link rel="prefetch" href="/encode/assets/js/51.3eb99b4d.js"><link rel="prefetch" href="/encode/assets/js/52.857aa9a7.js"><link rel="prefetch" href="/encode/assets/js/53.ee89a755.js"><link rel="prefetch" href="/encode/assets/js/54.0742a1ee.js"><link rel="prefetch" href="/encode/assets/js/55.16a40085.js"><link rel="prefetch" href="/encode/assets/js/56.200b4e1f.js"><link rel="prefetch" href="/encode/assets/js/57.ad67b3e8.js"><link rel="prefetch" href="/encode/assets/js/58.8efb2ff1.js"><link rel="prefetch" href="/encode/assets/js/59.797eb0b5.js"><link rel="prefetch" href="/encode/assets/js/6.190d022e.js"><link rel="prefetch" href="/encode/assets/js/60.86f32fd4.js"><link rel="prefetch" href="/encode/assets/js/61.178ac62a.js"><link rel="prefetch" href="/encode/assets/js/62.9ffa202b.js"><link rel="prefetch" href="/encode/assets/js/63.97b83eed.js"><link rel="prefetch" href="/encode/assets/js/65.93a4820b.js"><link rel="prefetch" href="/encode/assets/js/66.ce9f8cf7.js"><link rel="prefetch" href="/encode/assets/js/67.e855769e.js"><link rel="prefetch" href="/encode/assets/js/68.b438b055.js"><link rel="prefetch" href="/encode/assets/js/69.4850a1ce.js"><link rel="prefetch" href="/encode/assets/js/7.bb6d5db4.js"><link rel="prefetch" href="/encode/assets/js/70.f1b3b362.js"><link rel="prefetch" href="/encode/assets/js/71.08ec7765.js"><link rel="prefetch" href="/encode/assets/js/72.6b8c4b03.js"><link rel="prefetch" href="/encode/assets/js/73.410475d4.js"><link rel="prefetch" href="/encode/assets/js/74.954039d0.js"><link rel="prefetch" href="/encode/assets/js/75.98ca0c21.js"><link rel="prefetch" href="/encode/assets/js/76.620d2a99.js"><link rel="prefetch" href="/encode/assets/js/77.77745ca5.js"><link rel="prefetch" href="/encode/assets/js/78.d2559f9e.js"><link rel="prefetch" href="/encode/assets/js/79.390575f5.js"><link rel="prefetch" href="/encode/assets/js/80.f4a44cdf.js"><link rel="prefetch" href="/encode/assets/js/81.91b6b482.js"><link rel="prefetch" href="/encode/assets/js/82.c14a352d.js"><link rel="prefetch" href="/encode/assets/js/83.8a9a8155.js"><link rel="prefetch" href="/encode/assets/js/84.727b2420.js"><link rel="prefetch" href="/encode/assets/js/85.5b66b7d4.js"><link rel="prefetch" href="/encode/assets/js/86.7f1b8ba3.js"><link rel="prefetch" href="/encode/assets/js/87.b5df7089.js"><link rel="prefetch" href="/encode/assets/js/88.862df3d3.js"><link rel="prefetch" href="/encode/assets/js/89.2122e49f.js"><link rel="prefetch" href="/encode/assets/js/90.d1e15264.js"><link rel="prefetch" href="/encode/assets/js/91.fb5441d9.js"><link rel="prefetch" href="/encode/assets/js/92.607c6e24.js"><link rel="prefetch" href="/encode/assets/js/93.b1c30ad3.js"><link rel="prefetch" href="/encode/assets/js/94.2956edaf.js"><link rel="prefetch" href="/encode/assets/js/95.11998ca3.js"><link rel="prefetch" href="/encode/assets/js/96.9cd4ede9.js"><link rel="prefetch" href="/encode/assets/js/97.30d716a7.js"><link rel="prefetch" href="/encode/assets/js/98.2a55e71b.js"><link rel="prefetch" href="/encode/assets/js/99.8651d8fa.js"><link rel="prefetch" href="/encode/assets/js/vendors~docsearch.5da1c945.js">
+    <link rel="stylesheet" href="/encode/assets/css/0.styles.66d56a42.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/encode/" class="home-link router-link-active"><img src="/encode/img/logo.jpeg" alt="bootstet" class="logo"> <span class="site-name can-hide">bootstet</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/encode/index.html" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编码规范" class="dropdown-title"><span class="title">编码规范</span> <span class="arrow down"></span></button> <button type="button" aria-label="编码规范" class="mobile-dropdown-title"><span class="title">编码规范</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/coding/html.html" class="nav-link">
+  HTML 编码规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/coding/css.html" class="nav-link">
+  CSS 编码规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/coding/javascript.html" class="nav-link">
+  JavaScript 编码规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/coding/node.html" class="nav-link">
+  Node 编码规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/coding/typescript.html" class="nav-link">
+  Typescript 编码规范
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工程规范" class="dropdown-title"><span class="title">工程规范</span> <span class="arrow down"></span></button> <button type="button" aria-label="工程规范" class="mobile-dropdown-title"><span class="title">工程规范</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/engineering/git.html" class="nav-link">
+  Git 规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/engineering/doc.html" class="nav-link">
+  文档规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/engineering/changelog.html" class="nav-link">
+  CHANGELOG 规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/engineering/monorepo.html" class="nav-link">
+  Monorepo
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="NPM包" class="dropdown-title"><span class="title">NPM包</span> <span class="arrow down"></span></button> <button type="button" aria-label="NPM包" class="mobile-dropdown-title"><span class="title">NPM包</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/npm/eslint.html" class="nav-link">
+  eslint-config-encode
+</a></li><li class="dropdown-item"><!----> <a href="/encode/npm/stylelint.html" class="nav-link">
+  stylelint-config-encode
+</a></li><li class="dropdown-item"><!----> <a href="/encode/npm/commitlint.html" class="nav-link">
+  commitlint-config-encode
+</a></li><li class="dropdown-item"><!----> <a href="/encode/npm/markdownlint.html" class="nav-link">
+  markdownlint-config-encode
+</a></li><li class="dropdown-item"><!----> <a href="/encode/npm/eslint-plugin.html" class="nav-link">
+  eslint-plugin-encode
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="脚手架" class="dropdown-title"><span class="title">脚手架</span> <span class="arrow down"></span></button> <button type="button" aria-label="脚手架" class="mobile-dropdown-title"><span class="title">脚手架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/cli/encode-fe-lint.html" class="nav-link">
+  bootstet-fe-lint
+</a></li></ul></div></div><div class="nav-item"><a href="/encode/components/perf/web-vitals.html" class="nav-link">
+  性能
+</a></div><div class="nav-item"><a href="/encode/components/observability/sentry.html" class="nav-link">
+  稳定性
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="安全" class="dropdown-title"><span class="title">安全</span> <span class="arrow down"></span></button> <button type="button" aria-label="安全" class="mobile-dropdown-title"><span class="title">安全</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/components/security/xss-csp.html" class="nav-link">
+  XSS 与 CSP
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/security/csrf-auth.html" class="nav-link">
+  CSRF 与鉴权
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="面试OS" class="dropdown-title"><span class="title">面试OS</span> <span class="arrow down"></span></button> <button type="button" aria-label="面试OS" class="mobile-dropdown-title"><span class="title">面试OS</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/interview/index.html" class="nav-link">
+  总览
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/one-pagers/vue3.html" class="nav-link">
+  一页纸：Vue3
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/one-pagers/RESUME.html" class="nav-link">
+  简历
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/one-pagers/RESUME1.html" class="nav-link">
+  简历1
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/battle-cards/perf-miniprogram.html" class="nav-link">
+  战役卡：小程序提速
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/cards/50-questions.html" class="nav-link">
+  高频50题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="study" class="dropdown-title"><span class="title">study</span> <span class="arrow down"></span></button> <button type="button" aria-label="study" class="mobile-dropdown-title"><span class="title">study</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/components/page/funPro.html" class="nav-link">
+  JavaScript深度剖析
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/ts/typescript.html" class="nav-link">
+  typeScript
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/question/design.html" class="nav-link">
+  设计模式
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/engineering/" class="nav-link">
+  前端工程化
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/vue/vueBase.html" class="nav-link">
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/react/basics1.html" class="nav-link">
+  react
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/node/basic.html" class="nav-link">
+  node
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/question/proAndAsync.html" class="nav-link">
+  面试题
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/browser/browser.html" class="nav-link">
+  面试题整理
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/article/bokeinit.html" class="nav-link">
+  常见问题记录
+</a></li></ul></div></div> <a href="https://github.com/bootstet/encode" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/encode/index.html" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编码规范" class="dropdown-title"><span class="title">编码规范</span> <span class="arrow down"></span></button> <button type="button" aria-label="编码规范" class="mobile-dropdown-title"><span class="title">编码规范</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/coding/html.html" class="nav-link">
+  HTML 编码规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/coding/css.html" class="nav-link">
+  CSS 编码规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/coding/javascript.html" class="nav-link">
+  JavaScript 编码规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/coding/node.html" class="nav-link">
+  Node 编码规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/coding/typescript.html" class="nav-link">
+  Typescript 编码规范
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工程规范" class="dropdown-title"><span class="title">工程规范</span> <span class="arrow down"></span></button> <button type="button" aria-label="工程规范" class="mobile-dropdown-title"><span class="title">工程规范</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/engineering/git.html" class="nav-link">
+  Git 规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/engineering/doc.html" class="nav-link">
+  文档规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/engineering/changelog.html" class="nav-link">
+  CHANGELOG 规范
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/engineering/monorepo.html" class="nav-link">
+  Monorepo
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="NPM包" class="dropdown-title"><span class="title">NPM包</span> <span class="arrow down"></span></button> <button type="button" aria-label="NPM包" class="mobile-dropdown-title"><span class="title">NPM包</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/npm/eslint.html" class="nav-link">
+  eslint-config-encode
+</a></li><li class="dropdown-item"><!----> <a href="/encode/npm/stylelint.html" class="nav-link">
+  stylelint-config-encode
+</a></li><li class="dropdown-item"><!----> <a href="/encode/npm/commitlint.html" class="nav-link">
+  commitlint-config-encode
+</a></li><li class="dropdown-item"><!----> <a href="/encode/npm/markdownlint.html" class="nav-link">
+  markdownlint-config-encode
+</a></li><li class="dropdown-item"><!----> <a href="/encode/npm/eslint-plugin.html" class="nav-link">
+  eslint-plugin-encode
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="脚手架" class="dropdown-title"><span class="title">脚手架</span> <span class="arrow down"></span></button> <button type="button" aria-label="脚手架" class="mobile-dropdown-title"><span class="title">脚手架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/cli/encode-fe-lint.html" class="nav-link">
+  bootstet-fe-lint
+</a></li></ul></div></div><div class="nav-item"><a href="/encode/components/perf/web-vitals.html" class="nav-link">
+  性能
+</a></div><div class="nav-item"><a href="/encode/components/observability/sentry.html" class="nav-link">
+  稳定性
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="安全" class="dropdown-title"><span class="title">安全</span> <span class="arrow down"></span></button> <button type="button" aria-label="安全" class="mobile-dropdown-title"><span class="title">安全</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/components/security/xss-csp.html" class="nav-link">
+  XSS 与 CSP
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/security/csrf-auth.html" class="nav-link">
+  CSRF 与鉴权
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="面试OS" class="dropdown-title"><span class="title">面试OS</span> <span class="arrow down"></span></button> <button type="button" aria-label="面试OS" class="mobile-dropdown-title"><span class="title">面试OS</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/interview/index.html" class="nav-link">
+  总览
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/one-pagers/vue3.html" class="nav-link">
+  一页纸：Vue3
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/one-pagers/RESUME.html" class="nav-link">
+  简历
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/one-pagers/RESUME1.html" class="nav-link">
+  简历1
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/battle-cards/perf-miniprogram.html" class="nav-link">
+  战役卡：小程序提速
+</a></li><li class="dropdown-item"><!----> <a href="/encode/interview/cards/50-questions.html" class="nav-link">
+  高频50题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="study" class="dropdown-title"><span class="title">study</span> <span class="arrow down"></span></button> <button type="button" aria-label="study" class="mobile-dropdown-title"><span class="title">study</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/encode/components/page/funPro.html" class="nav-link">
+  JavaScript深度剖析
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/ts/typescript.html" class="nav-link">
+  typeScript
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/question/design.html" class="nav-link">
+  设计模式
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/engineering/" class="nav-link">
+  前端工程化
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/vue/vueBase.html" class="nav-link">
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/react/basics1.html" class="nav-link">
+  react
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/node/basic.html" class="nav-link">
+  node
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/question/proAndAsync.html" class="nav-link">
+  面试题
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/browser/browser.html" class="nav-link">
+  面试题整理
+</a></li><li class="dropdown-item"><!----> <a href="/encode/components/article/bokeinit.html" class="nav-link">
+  常见问题记录
+</a></li></ul></div></div> <a href="https://github.com/bootstet/encode" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>JavaScript深度剖析</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/encode/components/page/funPro.html" class="sidebar-link">函数式编程</a></li><li><a href="/encode/components/page/asyncPro.html" class="sidebar-link">JavaScript异步编程</a></li><li><a href="/encode/components/page/myPromise.html" class="sidebar-link">JavaScript异步 - 手写promise</a></li><li><a href="/encode/components/page/ES6.html" class="sidebar-link">ES新特性</a></li><li><a href="/encode/components/page/optimization.html" class="sidebar-link">js性能优化</a></li><li><a href="/encode/components/page/prototype.html" class="sidebar-link">Js之原型和原型链</a></li><li><a href="/encode/components/page/datatype.html" class="sidebar-link">Js之数据类型</a></li><li><a href="/encode/components/jsBase/bind.html" class="sidebar-link">Js之bind的模拟实现</a></li><li><a href="/encode/components/jsBase/callOrApply.html" class="sidebar-link">Js之call和apply的模拟实现</a></li><li><a href="/encode/components/jsBase/new.html" class="sidebar-link">Js之new的模拟实现</a></li><li><a href="/encode/components/jsBase/this.html" class="sidebar-link">Js之从ECMAScript规范解读this</a></li><li><a href="/encode/components/jsBase/scopeChain.html" class="sidebar-link">Js之作用域链</a></li><li><a href="/encode/components/jsBase/objectMethods.html" class="sidebar-link">Js之创建对象的多种方式及优缺点</a></li><li><a href="/encode/components/jsBase/arguments.html" class="sidebar-link">Js之参数按值传递</a></li><li><a href="/encode/components/jsBase/executableContext.html" class="sidebar-link">Js之执行上下文</a></li><li><a href="/encode/components/jsBase/executableContextStack.html" class="sidebar-link">Js之执行上下文栈</a></li><li><a href="/encode/components/jsBase/argumentsObject.html" class="sidebar-link">Js之类数组对象与arguments</a></li><li><a href="/encode/components/jsBase/jicheng.html" aria-current="page" class="active sidebar-link">Js之继承的多种方式和优缺点</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/encode/components/jsBase/jicheng.html#写在前面" class="sidebar-link">写在前面</a></li><li class="sidebar-sub-header"><a href="/encode/components/jsBase/jicheng.html#_1-原型链继承" class="sidebar-link">1.原型链继承</a></li><li class="sidebar-sub-header"><a href="/encode/components/jsBase/jicheng.html#_2-借用构造函数-经典继承" class="sidebar-link">2.借用构造函数(经典继承)</a></li><li class="sidebar-sub-header"><a href="/encode/components/jsBase/jicheng.html#_3-组合继承" class="sidebar-link">3.组合继承</a></li><li class="sidebar-sub-header"><a href="/encode/components/jsBase/jicheng.html#_4-原型式继承" class="sidebar-link">4.原型式继承</a></li><li class="sidebar-sub-header"><a href="/encode/components/jsBase/jicheng.html#_5-寄生式继承" class="sidebar-link">5. 寄生式继承</a></li><li class="sidebar-sub-header"><a href="/encode/components/jsBase/jicheng.html#_6-寄生组合式继承" class="sidebar-link">6. 寄生组合式继承</a></li></ul></li><li><a href="/encode/components/jsBase/scope.html" class="sidebar-link">Js之词法作用域和动态作用域</a></li><li><a href="/encode/components/jsBase/closure.html" class="sidebar-link">Js之闭包</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>typeScript</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>设计模式</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端工程化</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>vue</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>vue3</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>react</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>node</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/encode/components/question/" class="sidebar-heading clickable"><span>面试题</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>安全</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>网络与缓存</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>小程序</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>面试题整理</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>常见问题记录</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>感悟</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>待定...</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="javascript深入之继承的多种方式和优缺点"><a href="#javascript深入之继承的多种方式和优缺点" class="header-anchor">#</a> JavaScript深入之继承的多种方式和优缺点</h1> <blockquote><p>JavaScript深入系列第十五篇，讲解JavaScript各种继承方式和优缺点。</p></blockquote> <h2 id="写在前面"><a href="#写在前面" class="header-anchor">#</a> 写在前面</h2> <p>本文讲解JavaScript各种继承方式和优缺点。</p> <p>但是注意：</p> <p>这篇文章更像是笔记，哎，再让我感叹一句：《JavaScript高级程序设计》写得真是太好了！</p> <h2 id="_1-原型链继承"><a href="#_1-原型链继承" class="header-anchor">#</a> 1.原型链继承</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">Parent</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'kevin'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Parent</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">getName</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">Child</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Child</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Parent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> child1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child1<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// kevin</span>
+</code></pre></div><p>问题：</p> <p>1.引用类型的属性被所有实例共享，举个例子：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">Parent</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>names <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'kevin'</span><span class="token punctuation">,</span> <span class="token string">'daisy'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">Child</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Child</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Parent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> child1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+child1<span class="token punctuation">.</span>names<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">'yayu'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child1<span class="token punctuation">.</span>names<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [&quot;kevin&quot;, &quot;daisy&quot;, &quot;yayu&quot;]</span>
+
+<span class="token keyword">var</span> child2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child2<span class="token punctuation">.</span>names<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [&quot;kevin&quot;, &quot;daisy&quot;, &quot;yayu&quot;]</span>
+</code></pre></div><p>2.在创建 Child 的实例时，不能向Parent传参</p> <h2 id="_2-借用构造函数-经典继承"><a href="#_2-借用构造函数-经典继承" class="header-anchor">#</a> 2.借用构造函数(经典继承)</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">Parent</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>names <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'kevin'</span><span class="token punctuation">,</span> <span class="token string">'daisy'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">Child</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">Parent</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> child1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+child1<span class="token punctuation">.</span>names<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">'yayu'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child1<span class="token punctuation">.</span>names<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [&quot;kevin&quot;, &quot;daisy&quot;, &quot;yayu&quot;]</span>
+
+<span class="token keyword">var</span> child2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child2<span class="token punctuation">.</span>names<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [&quot;kevin&quot;, &quot;daisy&quot;]</span>
+</code></pre></div><p>优点：</p> <p>1.避免了引用类型的属性被所有实例共享</p> <p>2.可以在 Child 中向 Parent 传参</p> <p>举个例子：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">Parent</span> <span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">Child</span> <span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">Parent</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> child1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token string">'kevin'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child1<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// kevin</span>
+
+<span class="token keyword">var</span> child2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token string">'daisy'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child2<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// daisy</span>
+</code></pre></div><p>缺点：</p> <p>方法都在构造函数中定义，每次创建实例都会创建一遍方法。</p> <h2 id="_3-组合继承"><a href="#_3-组合继承" class="header-anchor">#</a> 3.组合继承</h2> <p>原型链继承和经典继承双剑合璧。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">Parent</span> <span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>colors <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'red'</span><span class="token punctuation">,</span> <span class="token string">'blue'</span><span class="token punctuation">,</span> <span class="token string">'green'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Parent</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">getName</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">Child</span> <span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> age</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token function">Parent</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> age<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Child</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Parent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> child1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token string">'kevin'</span><span class="token punctuation">,</span> <span class="token string">'18'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+child1<span class="token punctuation">.</span>colors<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">'black'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child1<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// kevin</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child1<span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 18</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child1<span class="token punctuation">.</span>colors<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;, &quot;black&quot;]</span>
+
+<span class="token keyword">var</span> child2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token string">'daisy'</span><span class="token punctuation">,</span> <span class="token string">'20'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child2<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// daisy</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child2<span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 20</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child2<span class="token punctuation">.</span>colors<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;]</span>
+</code></pre></div><p>优点：融合原型链继承和构造函数的优点，是 JavaScript 中最常用的继承模式。</p> <h2 id="_4-原型式继承"><a href="#_4-原型式继承" class="header-anchor">#</a> 4.原型式继承</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">createObj</span><span class="token punctuation">(</span><span class="token parameter">o</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">function</span> <span class="token constant">F</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token class-name">F</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> o<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">F</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>就是 ES5 Object.create 的模拟实现，将传入的对象作为创建的对象的原型。</p> <p>缺点：</p> <p>包含引用类型的属性值始终都会共享相应的值，这点跟原型链继承一样。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> person <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'kevin'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">friends</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'daisy'</span><span class="token punctuation">,</span> <span class="token string">'kelly'</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> person1 <span class="token operator">=</span> <span class="token function">createObj</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> person2 <span class="token operator">=</span> <span class="token function">createObj</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+person1<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'person1'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>person2<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// kevin</span>
+
+person1<span class="token punctuation">.</span>firends<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">'taylor'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>person2<span class="token punctuation">.</span>friends<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [&quot;daisy&quot;, &quot;kelly&quot;, &quot;taylor&quot;]</span>
+</code></pre></div><p>注意：修改<code>person1.name</code>的值，<code>person2.name</code>的值并未发生改变，并不是因为<code>person1</code>和<code>person2</code>有独立的 name 值，而是因为<code>person1.name = 'person1'</code>，给<code>person1</code>添加了 name 值，并非修改了原型上的 name 值。</p> <h2 id="_5-寄生式继承"><a href="#_5-寄生式继承" class="header-anchor">#</a> 5. 寄生式继承</h2> <p>创建一个仅用于封装继承过程的函数，该函数在内部以某种形式来做增强对象，最后返回对象。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">createObj</span> <span class="token punctuation">(</span><span class="token parameter">o</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> clone <span class="token operator">=</span> object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>o<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    clone<span class="token punctuation">.</span><span class="token function-variable function">sayName</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'hi'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> clone<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>缺点：跟借用构造函数模式一样，每次创建对象都会创建一遍方法。</p> <h2 id="_6-寄生组合式继承"><a href="#_6-寄生组合式继承" class="header-anchor">#</a> 6. 寄生组合式继承</h2> <p>为了方便大家阅读，在这里重复一下组合继承的代码：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">Parent</span> <span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>colors <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'red'</span><span class="token punctuation">,</span> <span class="token string">'blue'</span><span class="token punctuation">,</span> <span class="token string">'green'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Parent</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">getName</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">Child</span> <span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> age</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">Parent</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> age<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Child</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Parent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> child1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token string">'kevin'</span><span class="token punctuation">,</span> <span class="token string">'18'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child1<span class="token punctuation">)</span>
+</code></pre></div><p>组合继承最大的缺点是会调用两次父构造函数。</p> <p>一次是设置子类型实例的原型的时候：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token class-name">Child</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Parent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>一次在创建子类型实例的时候：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> child1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token string">'kevin'</span><span class="token punctuation">,</span> <span class="token string">'18'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>回想下 new 的模拟实现，其实在这句中，我们会执行：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token function">Parent</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>在这里，我们又会调用了一次 Parent 构造函数。</p> <p>所以，在这个例子中，如果我们打印 child1 对象，我们会发现 Child.prototype 和 child1 都有一个属性为<code>colors</code>，属性值为<code>['red', 'blue', 'green']</code>。</p> <p>那么我们该如何精益求精，避免这一次重复调用呢？</p> <p>如果我们不使用 Child.prototype = new Parent() ，而是间接的让 Child.prototype 访问到 Parent.prototype 呢？</p> <p>看看如何实现：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">Parent</span> <span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>colors <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'red'</span><span class="token punctuation">,</span> <span class="token string">'blue'</span><span class="token punctuation">,</span> <span class="token string">'green'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Parent</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">getName</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">Child</span> <span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> age</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">Parent</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> age<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 关键的三步</span>
+<span class="token keyword">var</span> <span class="token function-variable function">F</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token class-name">F</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token class-name">Parent</span><span class="token punctuation">.</span>prototype<span class="token punctuation">;</span>
+
+<span class="token class-name">Child</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">F</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">var</span> child1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token string">'kevin'</span><span class="token punctuation">,</span> <span class="token string">'18'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>最后我们封装一下这个继承方法：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">object</span><span class="token punctuation">(</span><span class="token parameter">o</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">function</span> <span class="token constant">F</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token class-name">F</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> o<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">F</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">prototype</span><span class="token punctuation">(</span><span class="token parameter">child<span class="token punctuation">,</span> parent</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> prototype <span class="token operator">=</span> <span class="token function">object</span><span class="token punctuation">(</span>parent<span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    prototype<span class="token punctuation">.</span>constructor <span class="token operator">=</span> child<span class="token punctuation">;</span>
+    child<span class="token punctuation">.</span>prototype <span class="token operator">=</span> prototype<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 当我们使用的时候：</span>
+<span class="token function">prototype</span><span class="token punctuation">(</span>Child<span class="token punctuation">,</span> Parent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>引用《JavaScript高级程序设计》中对寄生组合式继承的夸赞就是：</p> <p>这种方式的高效率体现它只调用了一次 Parent 构造函数，并且因此避免了在 Parent.prototype 上面创建不必要的、多余的属性。与此同时，原型链还能保持不变；因此，还能够正常使用 instanceof 和 isPrototypeOf。开发人员普遍认为寄生组合式继承是引用类型最理想的继承范式。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/encode/components/jsBase/argumentsObject.html" class="prev">
+        Js之类数组对象与arguments
+      </a></span> <span class="next"><a href="/encode/components/jsBase/scope.html">
+        Js之词法作用域和动态作用域
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/encode/assets/js/app.ec29c162.js" defer></script><script src="/encode/assets/js/2.5e8d92a0.js" defer></script><script src="/encode/assets/js/1.d8615a3a.js" defer></script><script src="/encode/assets/js/64.9d7796be.js" defer></script>
+  </body>
+</html>
