@@ -1,6 +1,6 @@
 # encode-fe-markdownlint-config
 
-> 印客学院 文档 规范
+>  文档 规范
 
 支持配套的 [markdownlint 可共享配置](https://www.npmjs.com/package/markdownlint#optionsconfig)。
 
@@ -9,7 +9,7 @@
 需要先行安装 [markdownlint](https://www.npmjs.com/package/markdownlint)：
 
 ```bash
-npm install encode-fe-markdownlint-config markdownlint --save-dev
+npm install bootstet-markdownlint-config markdownlint --save-dev
 ```
 
 ## 使用
@@ -18,6 +18,6 @@ npm install encode-fe-markdownlint-config markdownlint --save-dev
 
 ```json
 {
-	"extends": "encode-fe-markdownlint-config"
+	"extends": "bootstet-markdownlint-config"
 }
 ```
