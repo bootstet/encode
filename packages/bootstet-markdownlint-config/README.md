@@ -1,4 +1,4 @@
-# encode-fe-markdownlint-config
+# bootstet-markdownlint-config
 
 >  文档 规范
 
