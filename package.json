@@ -22,6 +22,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.6.1",
     "bootstet-fe-lint": "^1.0.0",
+    "bootstet-markdownlint-config": "^0.0.15",
     "conventional-changelog-cli": "^5.0.0",
     "husky": "^8.0.3",
     "lerna": "^6.6.2",

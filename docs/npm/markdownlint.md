@@ -1,19 +1,17 @@
 ---
-title: markdownlint-config-encode
+title: bootstet-markdownlint-config
 categories:
   - 工程规范
 tags:
   - 工程规范
 author:
-  name: 澄怀
-  link: https://github.com/encode-studio-fe/fe-spec
+  name: 一休
+  link: https://github.com/bootstet/encode
 ---
 
-# markdownlint-config-encode
+# bootstet-markdownlint-config
 
-:::tip
-印客学院 文档 规范
-:::
+>  文档 规范
 
 支持配套的 [markdownlint 可共享配置](https://www.npmjs.com/package/markdownlint#optionsconfig)。
 
@@ -22,7 +20,7 @@ author:
 需要先行安装 [markdownlint](https://www.npmjs.com/package/markdownlint)：
 
 ```bash
-npm install markdownlint-config-encode markdownlint --save-dev
+npm install bootstet-markdownlint-config markdownlint --save-dev
 ```
 
 ## 使用
@@ -31,6 +29,7 @@ npm install markdownlint-config-encode markdownlint --save-dev
 
 ```json
 {
-  "extends": "markdownlint-config-encode"
+	"extends": "bootstet-markdownlint-config"
 }
 ```
+

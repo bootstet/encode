@@ -1,18 +1,18 @@
 ---
-title: commitlint-config-encode
+title: bootstet-commitlint-config
 categories:
   - 工程规范
 tags:
   - 工程规范
 author:
-  name: 澄怀
-  link: https://github.com/encode-studio-fe/fe-spec
+  name: 一休
+  link: https://github.com/bootstet/encode
 ---
 
-# commitlint-config-encode
+# bootstet-commitlint-config
 
 :::tip
-印客学院 Git 规范
+ Git 规范
 :::
 
 支持配套的 [commitlint 配置](https://commitlint.js.org/#/concepts-shareable-config)，用于对 `git commit message` 进行校验。
@@ -22,7 +22,7 @@ author:
 使用时，需要安装 [@commitlint/cli](https://www.npmjs.com/package/@commitlint/cli)：
 
 ```bash
-npm install commitlint-config-encode @commitlint/cli --save-dev
+npm install bootstet-commitlint-config @commitlint/cli --save-dev
 ```
 
 ## 使用
