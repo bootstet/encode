@@ -14,7 +14,7 @@ npm install bootstet-markdownlint-config markdownlint --save-dev
 
 ## 使用
 
-在 `.markdownlint.json` 中继承本包2:
+在 `.markdownlint.json` 中继承本包:
 
 ```json
 {
