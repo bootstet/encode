@@ -264,7 +264,15 @@ const studySidebar = [
     children: [ 
       // ['/components/page2/', '占位目录的']
     ]
-  }
+  },
+  {
+    title: 'Q&A',
+    collapsable: true,
+    sidebarDepth: 3,
+    children: [
+      ['/components/qAa/proxy.md', 'proxy']
+    ],
+  },
 ]
  
   

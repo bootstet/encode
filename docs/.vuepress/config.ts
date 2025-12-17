@@ -77,6 +77,12 @@ export default defineConfig4CustomTheme({
 					{ text: '面试题整理', link: '/components/browser/browser.md' },
 					{ text: '常见问题记录', link: '/components/article/bokeinit.md' },
 				]
+			},
+			{
+				text: 'Q&A',
+				items: [
+					{ text: 'proxy', link: '/components/qAa/proxy.md' },
+				],
 			}
 		],
 		sidebar: routerPath,

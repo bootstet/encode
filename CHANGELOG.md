@@ -1,5 +1,12 @@
 ##  (2025-12-16)
 
+* feat: 提交校验 ([d737fad](https://github.com/bootstet/encode/commit/d737fad))
+* fix: update router name ([2005031](https://github.com/bootstet/encode/commit/2005031))
+
+
+
+##  (2025-12-16)
+
 * fix: update router name ([2005031](https://github.com/bootstet/encode/commit/2005031))
 
 
