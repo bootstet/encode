@@ -1,12 +1,12 @@
 <!--
  * @Author: bootstet@163.com bootstet@163.com
  * @Date: 2025-12-17 15:06:52
- * @LastEditors: bootstet@163.com bootstet@163.com
- * @LastEditTime: 2025-12-17 17:06:40
+ * @LastEditors: bootstet bootstet@163.com
+ * @LastEditTime: 2025-12-18 22:57:03
  * @FilePath: /encode/docs/components/qAa/PROXY.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
-# 本项目代理（Proxy）配置说明1
+# 本项目代理（Proxy）配置说明
 
 ## 背景
 我的机器上为了访问个人 GitHub 项目，配置了全局代理（例如 `127.0.0.1:7890`）。
