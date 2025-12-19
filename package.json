@@ -17,11 +17,12 @@
     "publish": "lerna publish",
     "lint": "markdownlint readme.md",
     "fe-lint": "bootstet-fe-lint scan",
+    "lint:total": "bootstet-fe-lint commit-file-scan --strict",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.1",
-    "bootstet-fe-lint": "^1.0.0",
+    "bootstet-fe-lint": "workspace:*",
     "bootstet-markdownlint-config": "^0.0.15",
     "conventional-changelog-cli": "^5.0.0",
     "husky": "^8.0.3",
