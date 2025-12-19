@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname "$0")/_/husky.sh"
 set -e
-npx --no-install bootstet-fe-lint commit-file-scan && echo "pre-commit: commit-file-scan passed"
+npx --no-install bootstet-fe-lint commit-file-scan  && echo "pre-commit: commit-file-scan passed"
 #pnpm run lint:total && echo "pre-commit: commit-file-scan passed"
