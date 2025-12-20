@@ -82,6 +82,7 @@ export default defineConfig4CustomTheme({
 				text: 'Q&A',
 				items: [
 					{ text: 'proxy', link: '/components/qAa/proxy.md' },
+					{ text: 'commit lint', link: '/components/qAa/pre-commit-fe-lint-qaa.md' },
 				],
 			}
 		],
