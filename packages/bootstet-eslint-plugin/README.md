@@ -1,11 +1,11 @@
-# eslint-plugin-encode
+# bootstet-eslint-plugin
 
 ## 安装
 
 除了本包，你需要同时安装 [ESlint](https://eslint.org/)
 
 ```shell
-$ npm install eslint-plugin-encode eslint --save-dev
+$ npm install bootstet-eslint-plugin eslint --save-dev
 ```
 
 ## 使用
@@ -15,9 +15,9 @@ $ npm install eslint-plugin-encode eslint --save-dev
 ```js
 // .eslintrc.js
 module.exports = {
-  plugin: ['eslint-config-encode'],
+  plugin: ['bootstet-eslint-plugin'],
   rules: {
-    'eslint-plugin-encode/no-secret-info': 'error',
+    'bootstet-eslint-plugin/no-secret-info': 'error',
   },
 };
 ```
@@ -27,7 +27,7 @@ module.exports = {
 ```js
 // .eslintrc.js
 module.exports = {
-  extends: 'plugin:eslint-plugin-encode/recommended',
+  extends: 'plugin:bootstet-eslint-plugin/recommended',
 };
 ```
 
