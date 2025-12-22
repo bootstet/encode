@@ -1,3 +1,22 @@
+##  (2025-12-22)
+
+* chore(release): publish v0.0.16 ([791831c](https://github.com/bootstet/encode/commit/791831c))
+* feat: 提交校验 ([d737fad](https://github.com/bootstet/encode/commit/d737fad))
+* feat: 添加问题清单 ([5aa253c](https://github.com/bootstet/encode/commit/5aa253c))
+* feat: 修正路由 ([f15ab50](https://github.com/bootstet/encode/commit/f15ab50))
+* feat: add proxy md ([c63ea91](https://github.com/bootstet/encode/commit/c63ea91))
+* feat: changelog ([36deae3](https://github.com/bootstet/encode/commit/36deae3))
+* feat: commit test ([3cb7bff](https://github.com/bootstet/encode/commit/3cb7bff))
+* feat: commit test error ([e5b3d59](https://github.com/bootstet/encode/commit/e5b3d59))
+* feat: delete zhushi ([21a7c32](https://github.com/bootstet/encode/commit/21a7c32))
+* docs: 修改文档 ([7e3ad09](https://github.com/bootstet/encode/commit/7e3ad09))
+* docs: 修正文档 ([ef71202](https://github.com/bootstet/encode/commit/ef71202))
+* fix: commit hook ([5e8f887](https://github.com/bootstet/encode/commit/5e8f887))
+* fix: update ([9d61296](https://github.com/bootstet/encode/commit/9d61296))
+* fix: update router name ([2005031](https://github.com/bootstet/encode/commit/2005031))
+
+
+
 # [](https://github.com/bootstet/encode/compare/v0.0.15...v) (2025-12-21)
 
 
