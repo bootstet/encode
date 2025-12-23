@@ -1,5 +1,11 @@
 ##  (2025-12-22)
 
+* feat: change ([14919a2](https://github.com/bootstet/encode/commit/14919a2))
+
+
+
+##  (2025-12-22)
+
 * chore(release): publish v0.0.16 ([791831c](https://github.com/bootstet/encode/commit/791831c))
 * feat: 提交校验 ([d737fad](https://github.com/bootstet/encode/commit/d737fad))
 * feat: 添加问题清单 ([5aa253c](https://github.com/bootstet/encode/commit/5aa253c))
