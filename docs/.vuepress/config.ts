@@ -35,7 +35,7 @@ export default defineConfig4CustomTheme({
       {
         text: 'NPM包',
         items: [
-          { text: 'eslint-config-encode', link: '/npm/eslint.md' },
+          { text: 'bootstet-eslint-config', link: '/npm/eslint.md' },
           { text: 'bootstet-stylelint-config', link: '/npm/stylelint.md' },
           { text: 'bootstet-commitlint-config', link: '/npm/commitlint.md' },
           { text: 'bootstet-markdownlint-config', link: '/npm/markdownlint.md' },
