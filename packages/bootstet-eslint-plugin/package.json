@@ -1,6 +1,6 @@
 {
   "name": "bootstet-eslint-plugin",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "自定义eslint插件",
   "scripts": {
     "test": "jest",
@@ -35,5 +35,5 @@
     "eslint": "^8.7.0",
     "jest": "^26.6.3"
   },
-  "gitHead": "fb52675aad935ebddb1a1e6d343e79f92c162671"
+  "gitHead": "791831cca8056662056284e87e16b2adbd91e531"
 }

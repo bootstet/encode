@@ -1,6 +1,6 @@
 {
   "name": "bootstet-markdownlint-config",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "文档规范",
   "author": "bootstet@163.com <bootstet@163.com>",
   "homepage": "https://github.com/bootstet/encode#readme",
@@ -23,5 +23,5 @@
   "peerDependencies": {
     "markdownlint": "^0.28.1"
   },
-  "gitHead": "fb52675aad935ebddb1a1e6d343e79f92c162671"
+  "gitHead": "791831cca8056662056284e87e16b2adbd91e531"
 }
